@@ -41,5 +41,26 @@
 #else
         public static bool EnableIL2CPP = false;
 #endif
+            
+            
+            		
+            public static string[] GetAssetPathsFromAssetBundle(string assetBundleName)
+            {
+#if UNITY_EDITOR	
+                    return UnityEditor.AssetDatabase.GetAssetPathsFromAssetBundle(assetBundleName);
+#else
+			return new string[0];
+#endif
+            }
+            
+            		
+            public static UnityEngine.Object LoadAssetAtPath(string s)
+            {
+#if UNITY_EDITOR	
+                    return UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(s);
+#else
+			return null;
+#endif
+            }
     }
 }
