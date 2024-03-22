@@ -24,10 +24,15 @@ namespace ET.Client
 
         private static async ETTask GetAllRouter(this RouterAddressComponent self)
         {
+            #if DEBUG
             string url = $"http://{self.RouterManagerHost}:{self.RouterManagerPort}/get_router?v={RandomGenerator.RandUInt32()}";
-            Log.Debug($"start get router info: {url}");
+            #else
+            // 云服务器地址
+            string url = $"http://{self.RouterManagerHost}:{self.RouterManagerPort}/static/ET/CDN/RouterAddress.json?v={RandomGenerator.RandUInt32()}";
+            #endif
+            Log.Info($">>>>start get router info: {url}");
             string routerInfo = await HttpClientHelper.Get(url);
-            Log.Debug($"recv router info: {routerInfo}");
+            Log.Info($">>>>>recv router info: {routerInfo}");
             HttpGetRouterResponse httpGetRouterResponse = MongoHelper.FromJson<HttpGetRouterResponse>(routerInfo);
             self.Info = httpGetRouterResponse;
             Log.Debug($"start get router info finish: {MongoHelper.ToJson(httpGetRouterResponse)}");

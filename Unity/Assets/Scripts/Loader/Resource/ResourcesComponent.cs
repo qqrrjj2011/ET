@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UniFramework.Event;
 using UnityEngine;
 using YooAsset;
 
@@ -12,6 +13,7 @@ namespace ET
     {
         private readonly string _defaultHostServer;
         private readonly string _fallbackHostServer;
+        
 
         public RemoteServices(string defaultHostServer, string fallbackHostServer)
         {
@@ -32,9 +34,14 @@ namespace ET
 
     public class ResourcesComponent : Singleton<ResourcesComponent>, ISingletonAwake
     {
+        private ETTask etTaskDownFinish;
+
+        
         public void Awake()
         {
             YooAssets.Initialize();
+            
+            UniEvent.AddListener<UserEventDefine.UpdateFinish>(OnHandleEventMessage);
         }
 
         protected override void Destroy()
@@ -44,51 +51,62 @@ namespace ET
 
         public async ETTask CreatePackageAsync(string packageName, bool isDefault = false)
         {
-            ResourcePackage package = YooAssets.CreatePackage(packageName);
-            if (isDefault)
-            {
-                YooAssets.SetDefaultPackage(package);
-            }
-
             GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
             EPlayMode ePlayMode = globalConfig.EPlayMode;
+            
+            // 加载更新页面
+            var go = Resources.Load<GameObject>("PatchWindow");
+            GameObject.Instantiate(go);
+            
+            PatchOperation operation = new PatchOperation("DefaultPackage", EDefaultBuildPipeline.BuiltinBuildPipeline.ToString(), ePlayMode);
+            YooAssets.StartOperation(operation);
 
-            // 编辑器下的模拟模式
-            switch (ePlayMode)
-            {
-                case EPlayMode.EditorSimulateMode:
-                {
-                    EditorSimulateModeParameters createParameters = new();
-                    createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild("ScriptableBuildPipeline", packageName);
-                    await package.InitializeAsync(createParameters).Task;
-                    break;
-                }
-                case EPlayMode.OfflinePlayMode:
-                {
-                    OfflinePlayModeParameters createParameters = new();
-                    await package.InitializeAsync(createParameters).Task;
-                    break;
-                }
-                case EPlayMode.HostPlayMode:
-                {
-                    string defaultHostServer = GetHostServerURL();
-                    string fallbackHostServer = GetHostServerURL();
-                    HostPlayModeParameters createParameters = new();
-                    createParameters.BuildinQueryServices = new GameQueryServices();
-                    createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
-                    await package.InitializeAsync(createParameters).Task;
-                    break;
-                }
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            etTaskDownFinish = ETTask.Create();
+            await etTaskDownFinish;
+            
+            
+            // ResourcePackage package = YooAssets.CreatePackage(packageName);
+            // if (isDefault)
+            // {
+            //     YooAssets.SetDefaultPackage(package);
+            // }
+            //
+            // // 编辑器下的模拟模式
+            // switch (ePlayMode)
+            // {
+            //     case EPlayMode.EditorSimulateMode:
+            //     {
+            //         EditorSimulateModeParameters createParameters = new();
+            //         createParameters.SimulateManifestFilePath = EditorSimulateModeHelper.SimulateBuild("ScriptableBuildPipeline", packageName);
+            //         await package.InitializeAsync(createParameters).Task;
+            //         break;
+            //     }
+            //     case EPlayMode.OfflinePlayMode:
+            //     {
+            //         OfflinePlayModeParameters createParameters = new();
+            //         await package.InitializeAsync(createParameters).Task;
+            //         break;
+            //     }
+            //     case EPlayMode.HostPlayMode:
+            //     {
+            //         string defaultHostServer = GetHostServerURL();
+            //         string fallbackHostServer = GetHostServerURL();
+            //         HostPlayModeParameters createParameters = new();
+            //         createParameters.BuildinQueryServices = new GameQueryServices();
+            //         createParameters.RemoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+            //         await package.InitializeAsync(createParameters).Task;
+            //         break;
+            //     }
+            //     default:
+            //         throw new ArgumentOutOfRangeException();
+            // }
         }
 
         static string GetHostServerURL()
         {
             //string hostServerIP = "http://10.0.2.2"; //安卓模拟器地址
-            string hostServerIP = "http://127.0.0.1";
-            string appVersion = "v1.0";
+            string hostServerIP = AllShareConfig.hostServerIP;
+            string appVersion = AllShareConfig.appVersion;
 
 #if UNITY_EDITOR
             if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.Android)
@@ -159,6 +177,13 @@ namespace ET
 
             allAssetsOperationHandle.Release();
             return dictionary;
+        }
+
+
+        void OnHandleEventMessage(IEventMessage message)
+        { 
+            Debug.Log(">>>>>>>update finish event");
+            this.etTaskDownFinish.SetResult();
         }
     }
 }

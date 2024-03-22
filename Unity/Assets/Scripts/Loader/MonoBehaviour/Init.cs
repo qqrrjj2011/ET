@@ -1,11 +1,13 @@
 ﻿using System;
 using CommandLine;
 using UnityEngine;
+using YooAsset;
 
 namespace ET
 {
 	public class Init: MonoBehaviour
 	{
+		
 		private void Start()
 		{
 			this.StartAsync().Coroutine();
@@ -34,7 +36,7 @@ namespace ET
 			World.Instance.AddSingleton<FiberManager>();
 
 			await World.Instance.AddSingleton<ResourcesComponent>().CreatePackageAsync("DefaultPackage", true);
-			
+			 
 			CodeLoader codeLoader = World.Instance.AddSingleton<CodeLoader>();
 			await codeLoader.DownloadAsync();
 			
