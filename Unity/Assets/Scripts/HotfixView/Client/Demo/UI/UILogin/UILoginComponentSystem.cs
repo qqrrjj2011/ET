@@ -16,6 +16,8 @@ namespace ET.Client
 			self.loginBtn.GetComponent<Button>().onClick.AddListener(()=> { self.OnLogin(); });
 			self.account = rc.Get<GameObject>("Account");
 			self.password = rc.Get<GameObject>("Password");
+			self.txt = rc.Get<GameObject>("txt");
+			self.txt.GetComponent<Text>().text = "2222222";
 		}
 
 		

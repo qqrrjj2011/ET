@@ -55,8 +55,8 @@ namespace ET
             EPlayMode ePlayMode = globalConfig.EPlayMode;
             
             // 加载更新页面
-            var go = Resources.Load<GameObject>("PatchWindow");
-            GameObject.Instantiate(go);
+            var loadwindow = Resources.Load<GameObject>("PatchWindow");
+            GameObject loadWindowClone = GameObject.Instantiate(loadwindow);
             
             PatchOperation operation = new PatchOperation("DefaultPackage", EDefaultBuildPipeline.BuiltinBuildPipeline.ToString(), ePlayMode);
             YooAssets.StartOperation(operation);
@@ -64,6 +64,7 @@ namespace ET
             etTaskDownFinish = ETTask.Create();
             await etTaskDownFinish;
             
+            GameObject.Destroy(loadWindowClone);
             
             // ResourcePackage package = YooAssets.CreatePackage(packageName);
             // if (isDefault)

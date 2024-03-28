@@ -10,7 +10,7 @@
         "YooAsset.Editor",
         "YooSimple",
         "UniFramework.Event",
-        "Unity.AllShareConfig"
+        "Unity.Model"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

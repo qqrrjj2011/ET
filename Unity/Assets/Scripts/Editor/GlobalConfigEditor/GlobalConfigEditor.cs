@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 
 namespace ET
@@ -8,6 +9,8 @@ namespace ET
     {
         private CodeMode codeMode;
         private BuildType buildType;
+        private AppRunType appRunType;
+        
 
         private void OnEnable()
         {
@@ -15,6 +18,8 @@ namespace ET
             this.codeMode = globalConfig.CodeMode;
             globalConfig.BuildType = EditorUserBuildSettings.development ? BuildType.Debug : BuildType.Release;
             this.buildType = globalConfig.BuildType;
+            this.appRunType = globalConfig.AppRunType;
+
         }
 
         public override void OnInspectorGUI()
@@ -41,6 +46,42 @@ namespace ET
                 };
                 this.serializedObject.Update();
                 AssemblyTool.DoCompile();
+            }
+
+            if (this.appRunType != globalConfig.AppRunType)
+            {
+                // 获取当前Standalone平台的预处理器符号
+                string currentDefines = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.Standalone);
+ 
+                // 删除指定的宏定义
+                string[] defines = currentDefines.Split(';');
+                List<string> updatedDefines = new List<string>();
+                string curAppRuntypeDefine = appRunType.ToString();
+                foreach (string define in defines)
+                {
+                    if (!string.IsNullOrEmpty(define))
+                    {
+                        updatedDefines.Add(define);
+                    }
+                }
+
+                if (updatedDefines.Contains(curAppRuntypeDefine))
+                {
+                    updatedDefines.Remove(curAppRuntypeDefine);
+                }
+
+                this.appRunType = globalConfig.AppRunType;
+                curAppRuntypeDefine = this.appRunType.ToString();
+                updatedDefines.Add(curAppRuntypeDefine);
+
+                // 将剩余的定义重新组合成字符串
+                string newDefines = string.Join(";", updatedDefines.ToArray());
+
+                // 设置新的预处理器符号
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(
+                    BuildTargetGroup.Standalone,
+                    newDefines
+                );
             }
         }
     }
