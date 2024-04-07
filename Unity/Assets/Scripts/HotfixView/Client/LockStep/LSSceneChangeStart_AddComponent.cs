@@ -9,13 +9,13 @@ namespace ET.Client
         {
             Room room = clientScene.GetComponent<Room>();
             ResourcesLoaderComponent resourcesLoaderComponent = room.AddComponent<ResourcesLoaderComponent>();
-            room.AddComponent<UIComponent>();
+         //111   room.AddComponent<UIComponent>();
             
             // 创建loading界面
             
             
             // 创建房间UI
-            await UIHelper.Create(args.Room, UIType.UILSRoom, UILayer.Low);
+     //111       await UIHelper.Create(args.Room, UIType.UILSRoom, UILayer.Low);
             
             // 加载场景资源
             await resourcesLoaderComponent.LoadSceneAsync($"Assets/Bundles/Scenes/{room.Name}.unity", LoadSceneMode.Single);

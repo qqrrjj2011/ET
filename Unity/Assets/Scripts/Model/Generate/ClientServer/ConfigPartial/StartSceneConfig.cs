@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 
 namespace ET
@@ -16,6 +17,8 @@ namespace ET
 
         public List<StartSceneConfig> Realms = new();
         
+        public List<StartSceneConfig> Accounts = new();
+        
         public List<StartSceneConfig> Routers = new();
         
         public List<StartSceneConfig> Maps = new();
@@ -23,6 +26,8 @@ namespace ET
         public StartSceneConfig Match;
         
         public StartSceneConfig Benchmark;
+        
+        public List<StartSceneConfig> loginSceneConfig = new();
         
         public List<StartSceneConfig> GetByProcess(int process)
         {
@@ -68,6 +73,12 @@ namespace ET
                         break;
                     case SceneType.BenchmarkServer:
                         this.Benchmark = startSceneConfig;
+                        break;
+                    case SceneType.LoginCenter:
+                        this.loginSceneConfig.Add(startSceneConfig);
+                        break;
+                    case SceneType.Account:
+                        this.Accounts.Add(startSceneConfig);
                         break;
                 }
             }

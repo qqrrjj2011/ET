@@ -56,11 +56,23 @@ MonoBehaviour:
     FileName: 99fa759c1bb84fd151171623fa5965a8.bundle
     FileCRC32: c29874dc
   - PackageName: DefaultPackage
+    FileName: 9dbb56e074352af1ac59e41b1da13af2.bundle
+    FileCRC32: e7fb7428
+  - PackageName: DefaultPackage
     FileName: baae9390e35d36def5a7a9b0a6722948.bundle
     FileCRC32: 5b78254f
   - PackageName: DefaultPackage
     FileName: bd1d5aa2a3957c5947702c0b97d52e42.bundle
     FileCRC32: 3dcd6389
+  - PackageName: DefaultPackage
+    FileName: bd959941e5ddcea3b810b4c14be42c2f.bundle
+    FileCRC32: 03a5c105
+  - PackageName: DefaultPackage
+    FileName: BuildReport_DefaultPackage_2024-03-23-818.json
+    FileCRC32: df264fbf
+  - PackageName: DefaultPackage
+    FileName: c0cec41cd46ae1a8035293364e5367c2.bundle
+    FileCRC32: d8f93cb7
   - PackageName: DefaultPackage
     FileName: decb6493cba54f81a33661642b11f92f.bundle
     FileCRC32: c2997afd
@@ -76,3 +88,9 @@ MonoBehaviour:
   - PackageName: DefaultPackage
     FileName: fa79168f6ddb779f9db22b781c3c5f19.bundle
     FileCRC32: 7ae29807
+  - PackageName: DefaultPackage
+    FileName: OutputCache
+    FileCRC32: e2e114ef
+  - PackageName: DefaultPackage
+    FileName: OutputCache.manifest
+    FileCRC32: 0c1a5a8d

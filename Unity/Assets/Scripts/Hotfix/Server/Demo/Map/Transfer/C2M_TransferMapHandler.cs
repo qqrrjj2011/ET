@@ -15,6 +15,10 @@ namespace ET.Server
 			{
 				toMap = "Map2";
 			}
+			else if (currentMap == "Map2")
+			{
+				toMap = "Map3";
+			}
 			else
 			{
 				toMap = "Map1";

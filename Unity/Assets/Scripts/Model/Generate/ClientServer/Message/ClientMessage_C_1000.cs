@@ -68,6 +68,12 @@ namespace ET
         [MemoryPackOrder(3)]
         public long PlayerId { get; set; }
 
+        [MemoryPackOrder(4)]
+        public long AccountId { get; set; }
+
+        [MemoryPackOrder(5)]
+        public string Token { get; set; }
+
         public override void Dispose()
         {
             if (!this.IsFromPool)
@@ -79,6 +85,8 @@ namespace ET
             this.Error = default;
             this.Message = default;
             this.PlayerId = default;
+            this.AccountId = default;
+            this.Token = default;
 
             ObjectPool.Instance.Recycle(this);
         }

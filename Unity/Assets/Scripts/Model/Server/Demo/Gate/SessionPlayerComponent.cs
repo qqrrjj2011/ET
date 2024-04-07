@@ -4,6 +4,11 @@
 	public class SessionPlayerComponent : Entity, IAwake, IDestroy
 	{
 		private EntityRef<Player> player;
+		
+		public long PlayerId;
+		public long PlayerInstanceId;
+		public long AccountId;
+		public bool isLoginAgain = false;
 
 		public Player Player
 		{

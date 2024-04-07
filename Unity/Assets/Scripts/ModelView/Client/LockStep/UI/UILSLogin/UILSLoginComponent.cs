@@ -2,7 +2,7 @@
 
 namespace ET.Client
 {
-	[ComponentOf(typeof(UI))]
+	//[ComponentOf(typeof(UI))]
 	public class UILSLoginComponent: Entity, IAwake
 	{
 		public GameObject account;

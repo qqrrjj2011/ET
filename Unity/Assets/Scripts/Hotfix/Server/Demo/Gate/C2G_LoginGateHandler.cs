@@ -20,10 +20,13 @@ namespace ET.Server
             session.RemoveComponent<SessionAcceptTimeoutComponent>();
 
             PlayerComponent playerComponent = root.GetComponent<PlayerComponent>();
+           // 1111
             Player player = playerComponent.GetByAccount(account);
             if (player == null)
             {
-                player = playerComponent.AddChild<Player, string>(account);
+                // 1111
+                long accountId = 0;
+                player = playerComponent.AddChild<Player, long>(accountId);
                 playerComponent.Add(player);
                 PlayerSessionComponent playerSessionComponent = player.AddComponent<PlayerSessionComponent>();
                 playerSessionComponent.AddComponent<MailBoxComponent, MailBoxType>(MailBoxType.GateSession);

@@ -160,6 +160,24 @@ message R2C_Login // ISessionResponse
 	int64 GateId = 6;
 }
 
+// ResponseType A2C_LoginAccount
+message C2A_LoginAccount // ISessionRequest
+{
+	int32 RpcId = 1;
+	string Account = 2;
+	string Password = 3;
+}
+
+
+message A2C_LoginAccount // ISessionResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64  AccountId = 4;
+	string Token = 5;
+}
+
 // ResponseType G2C_LoginGate
 message C2G_LoginGate // ISessionRequest
 {
@@ -232,4 +250,110 @@ message G2C_Benchmark // ISessionResponse
 	int32 RpcId = 1;
 	int32 Error = 2;
 	string Message = 3;
+}
+
+message A2C_Disconnect // IMessage
+{
+	int32 Error = 1;
+}
+
+
+
+//ResponseType A2C_GetServerInfos
+message C2A_GetServerInfos // ISessionRequest
+{
+	int32 RpcId = 90;
+	string Token = 1;
+	int64 AccountId = 2;
+}
+
+
+
+message A2C_GetServerInfos // ISessionResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated ServerInfoProto ServerInfosList = 1;
+}
+
+message ServerInfoProto
+{
+	int64 Id = 1;
+	int32 Status = 2;
+	string ServerName = 3;
+}
+
+
+message RoleInfoProto 
+{
+	int64 Id = 1;
+
+	string Name = 2;
+
+	int32 State = 3;
+
+	int64 AccountId = 4;
+
+	int64 LastLoginTime = 5;
+
+	int64 CreateTime = 6;
+
+	int32 ServerId = 7;
+}
+
+//ResponseType A2C_CreateRole
+message C2A_CreateRole // ISessionRequest
+{
+	int32 RpcId     = 90;
+	string Token    = 1;
+	int64 AccountId = 2;
+	string Name     = 3;
+	int32 ServerId  = 4;
+}
+
+
+message A2C_CreateRole // ISessionResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	RoleInfoProto RoleInfo = 1;
+}
+ 
+//ResponseType A2C_GetRoles
+message C2A_GetRoles // ISessionRequest
+{
+	int32  RpcId     = 90;
+	string Token     = 1;
+	int64  AccountId = 2;
+	int32  ServerId  = 3;
+}
+
+
+message A2C_GetRoles  // ISessionResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	repeated RoleInfoProto RoleInfo = 1;
+}
+
+
+//ResponseType A2C_DeleteRole
+message C2A_DeleteRole // ISessionRequest
+{
+	int32  RpcId      = 1;
+	string Token      = 2;
+	int64  AccountId  = 3;
+	int64  RoleInfoId = 4;
+	int32  ServerId   = 5;
+}
+
+message A2C_DeleteRole  // ISessionResponse
+{
+	int32 RpcId    = 1;
+	int32 Error    = 2;
+	string Message = 3;
+	int64  DeletedRoleInfoId = 4;
 }

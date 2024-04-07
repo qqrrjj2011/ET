@@ -5,10 +5,9 @@
         "Unity.ThirdParty",
         "Unity.Core",
         "Unity.Mathematics",
-        "Unity.Loader",
         "MemoryPack",
         "Unity.Model",
-        "Unity.AllShareConfig"
+        "Unity.Loader"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

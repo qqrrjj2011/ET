@@ -1,8 +1,23 @@
 ﻿namespace ET.Server
 {
-    [ChildOf(typeof(PlayerComponent))]
-    public sealed class Player : Entity, IAwake<string>
+    public enum PlayerState
     {
-        public string Account { get; set; }
+        Disconnect,
+        Gate,
+        Game,
+    }
+    
+    [ChildOf(typeof(PlayerComponent))]
+    public sealed class Player : Entity, IAwake<long>
+    {
+        public long AccountId { get;  set; }
+        
+        public long UnitId { get; set; }
+
+        public PlayerState PlayerState { get; set; }
+
+        public Session ClientSession { get; set; }
+
+        public long ChatInfoInstanceId { get; set; }
     }
 }

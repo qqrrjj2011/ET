@@ -175,3 +175,32 @@ message M2M_UnitTransferResponse // IResponse
 	int32 Error = 2;
 	string Message = 3;
 }
+
+// ResponseType L2A_LoginAccountResponse
+message A2L_LoginAccountRequest // IRequest
+{
+	int32 RpcId = 1;
+	int64 AccountId = 2;
+}
+
+message L2A_LoginAccountResponse // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}
+
+
+// ResponseType G2L_DisconnectGateResponse
+message L2G_DisconnectGateRequest // IRequest
+{
+	int32 RpcId = 1;
+	int64 AccountId = 2;
+}
+
+message G2L_DisconnectGateResponse // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+}

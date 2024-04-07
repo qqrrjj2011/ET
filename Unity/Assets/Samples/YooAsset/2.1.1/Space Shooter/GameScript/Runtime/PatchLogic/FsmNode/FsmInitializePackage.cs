@@ -3,10 +3,10 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using ET;
 using UnityEngine;
 using UniFramework.Machine;
 using YooAsset;
+using ET;
 
 /// <summary>
 /// 初始化资源包
@@ -111,8 +111,8 @@ internal class FsmInitializePackage : IStateNode
        // string hostServerIP = "http://127.0.0.1";
        
       //  string hostServerIP = "http://127.0.0.1:8080/static/1";
-        string hostServerIP = AllShareConfig.hostServerIP;
-        string appVersion = AllShareConfig.appVersion;
+      string hostServerIP = AllShareConfig.hostServerIP;
+      string appVersion = AllShareConfig.appVersion;
 
 #if UNITY_EDITOR
         if (UnityEditor.EditorUserBuildSettings.activeBuildTarget == UnityEditor.BuildTarget.Android)

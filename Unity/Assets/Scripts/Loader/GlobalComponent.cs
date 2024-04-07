@@ -10,7 +10,13 @@ namespace ET
         {
             self.Global = GameObject.Find("/Global").transform;
             self.Unit = GameObject.Find("/Global/Unit").transform;
-            self.UI = GameObject.Find("/Global/UI").transform;
+            self.UI = GameObject.Find("/Global/UIRoot").transform;
+            self.NormalRoot = GameObject.Find("/Global/UIRoot/NormalRoot").transform;
+            self.PopUpRoot = GameObject.Find("/Global/UIRoot/PopUpRoot").transform;
+            self.FixedRoot = GameObject.Find("/Global/UIRoot/FixedRoot").transform;
+            self.OtherRoot = GameObject.Find("/Global/UIRoot/OtherRoot").transform;
+            self.PoolRoot =  GameObject.Find("/Global/PoolRoot").transform;
+            
             self.GlobalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
         }
     }
@@ -23,5 +29,11 @@ namespace ET
         public Transform UI;
 
         public GlobalConfig GlobalConfig { get; set; }
+        
+        public Transform NormalRoot{ get; set; }
+        public Transform PopUpRoot{ get; set; }
+        public Transform FixedRoot{ get; set; }
+        public Transform PoolRoot{ get; set; }
+        public Transform OtherRoot{ get; set; }
     }
 }
