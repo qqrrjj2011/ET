@@ -54,6 +54,11 @@ namespace ET
         /// 网络错误
         /// </summary>
         public const int ERR_NetWorkError           = 200008;
+        
+        /// <summary>
+        /// token错误
+        /// </summary>
+        public const int ERR_TokenError           = 200009;
 
     }
 }

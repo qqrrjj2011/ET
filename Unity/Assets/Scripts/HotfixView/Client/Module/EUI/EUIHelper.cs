@@ -158,7 +158,7 @@ namespace ET.Client
         }
         
 
-        public static void RemoveUIScrollItems<K,T>(this K self, ref Dictionary<int, T> dictionary) where K : Entity,IUILogic  where T : Entity,IUIScrollItem
+        public static void RemoveUIScrollItems<K,T>(this K self, ref Dictionary<int, EntityRef<T>> dictionary) where K : Entity,IUILogic  where T : Entity,IUIScrollItem
         {
             if (dictionary == null)
             {
@@ -166,7 +166,8 @@ namespace ET.Client
             }
             foreach (var item in dictionary)
             {
-                item.Value.Dispose();
+                Entity entity = item.Value;
+                entity.Dispose();
             }
             dictionary.Clear();
             dictionary = null;

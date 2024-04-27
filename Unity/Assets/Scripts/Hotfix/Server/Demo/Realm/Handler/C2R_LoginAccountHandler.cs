@@ -86,7 +86,6 @@ namespace ET.Server
                         await dbComponent.Save<Account>(account);
                     }
                     
-                    
                     StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.Zone(), "LoginCenter");
                     A2L_LoginAccountRequest a2LLoginAccountRequest = A2L_LoginAccountRequest.Create();
                     a2LLoginAccountRequest.AccountId = account.Id;

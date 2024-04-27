@@ -5,7 +5,7 @@ namespace ET.Client
     [FriendOf(typeof(AccountInfoComponent))]
     public static class LoginHelper
     {
-        public static async ETTask Login(Scene scene, string account, string password)
+        public static async ETTask<int> Login(Scene scene, string account, string password)
         {
             scene.RemoveComponent<ClientSenderComponent>();
             
@@ -15,7 +15,7 @@ namespace ET.Client
             if (response.Error != ErrorCode.ERR_Success)
             {
                 Log.Error(response.Error+"");
-                return;
+                return response.Error;
             }
 
             // 登录成功,保存accountinfo
@@ -24,12 +24,13 @@ namespace ET.Client
             scene.GetComponent<AccountInfoComponent>().account = account;
             
             // 获得服务器列表
-            int errorCode = await LoginHelper.GetServerInfos(scene);
+            int errorCode = await GetServerInfos(scene);
             if (errorCode != ErrorCode.ERR_Success)
             {
                 Log.Error(errorCode.ToString());
-                return;
             }
+            
+            return errorCode;
              
            //111 await EventSystem.Instance.PublishAsync(scene, new LoginFinish());
         }
@@ -57,9 +58,9 @@ namespace ET.Client
 
             foreach (var serverInfoProto in a2CGetServerInfos.ServerInfosList)
             {
-                ServerInfo serverInfo = scene.GetComponent<ServerInfosComponent>().AddChild<ServerInfo>();
+                ServerInfo serverInfo = scene.GetComponent<ClientServerInfosComponent>().AddChildWithId<ServerInfo>(serverInfoProto.Id);
                 serverInfo.FromMessage(serverInfoProto);
-                scene.GetComponent<ServerInfosComponent>().Add(serverInfo);
+                scene.GetComponent<ClientServerInfosComponent>().Add(serverInfo);
             }
            
             return ErrorCode.ERR_Success;

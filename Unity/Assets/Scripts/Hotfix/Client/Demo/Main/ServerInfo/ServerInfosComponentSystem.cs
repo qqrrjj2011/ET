@@ -1,9 +1,9 @@
 ﻿namespace ET.Client
 {
-    [FriendOf(typeof(ServerInfosComponent))]
-    public class ServerInfosComponentDestroySystem : DestroySystem<ServerInfosComponent>
+    [FriendOf(typeof(ClientServerInfosComponent))]
+    public class ClientServerInfosComponentDestroySystem : DestroySystem<ClientServerInfosComponent>
     {
-        protected override void Destroy(ServerInfosComponent self)
+        protected override void Destroy(ClientServerInfosComponent self)
         {
             foreach (ServerInfo serverInfo in self.ServerInfoList)
             {
@@ -15,11 +15,11 @@
             self.CurrentServerId = 0;
         }
     }
-    [FriendOf(typeof(ServerInfosComponent))]
-    public static class ServerInfosComponentSystem
+    [FriendOf(typeof(ClientServerInfosComponent))]
+    public static class ClientServerInfosComponentSystem
     {
      
-        public static void Add(this ServerInfosComponent self, ServerInfo serverInfo)
+        public static void Add(this ClientServerInfosComponent self, ServerInfo serverInfo)
         {
             self.ServerInfoList.Add(serverInfo);
         }

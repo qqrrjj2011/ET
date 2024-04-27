@@ -18,6 +18,8 @@ namespace ET
         public const int LoginGate = 10;         // 网关
         
         public const int  LoadUIBaseWindows = 11;
+        
+        public const int  GetServerInfo = 12;
 
         public const int Max = 100; // 这个必须最大
     }

@@ -147,9 +147,13 @@ namespace ET
 
         public static GameObject GetGameObjectByResType( string poolName)
         {
-            GameObject pb = null;
-            Dictionary<string, UnityEngine.Object>  assetDict = AssetsBundleHelper.LoadBundle(poolName + ".unity3d").Item2;
-            pb = assetDict[poolName] as GameObject;
+            // GameObject pb = null;
+            // Dictionary<string, UnityEngine.Object>  assetDict = AssetsBundleHelper.LoadBundle(poolName + ".unity3d").Item2;
+            // pb = assetDict[poolName] as GameObject;
+            
+         //   GameObject pb = ResourcesComponent.Instance.LoadAssetAsync<GameObject>(poolName);
+            
+            GameObject pb = ResourcesComponent.Instance.LoadAssetSync<GameObject>( $"Assets/Bundles/UI/Demo/Item/{poolName}.prefab");
             return pb;
         }
     }

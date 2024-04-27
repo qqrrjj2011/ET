@@ -51,6 +51,12 @@ namespace ET
 
         public async ETTask CreatePackageAsync(string packageName, bool isDefault = false)
         {
+            ResourcePackage package = YooAssets.CreatePackage(packageName);
+            if (isDefault)
+            {
+                YooAssets.SetDefaultPackage(package);
+            } 
+            
             GlobalConfig globalConfig = Resources.Load<GlobalConfig>("GlobalConfig");
             EPlayMode ePlayMode = globalConfig.EPlayMode;
             
@@ -185,6 +191,18 @@ namespace ET
         { 
             Debug.Log(">>>>>>>update finish event");
             this.etTaskDownFinish.SetResult();
+        }
+
+        /// <summary>
+        /// 主要用来加载dll config aotdll，因为这时候纤程还没创建，无法使用ResourcesLoaderComponent。
+        /// 游戏中的资源应该使用ResourcesLoaderComponent来加载
+        /// </summary>
+        public  T LoadAssetSync<T>(string location) where T: UnityEngine.Object
+        {
+            AssetHandle handle = YooAssets.LoadAssetSync<T>(location);
+            T t = (T)handle.AssetObject;
+            handle.Release();
+            return t;
         }
     }
 }

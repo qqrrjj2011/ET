@@ -1,0 +1,4 @@
+{"dict": [
+[1, {"_t":"ServerInfoConfig","_id":1,"ServerName":"游戏一服"}],
+[2, {"_t":"ServerInfoConfig","_id":2,"ServerName":"游戏二服"}],
+]}

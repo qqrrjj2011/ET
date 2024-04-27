@@ -12,6 +12,7 @@ using UnityEngine;
 namespace ET.Client
 {
     [ObjectSystem]
+    [EnableClass]
     public class UIFindHelper
     {
         /// <summary>

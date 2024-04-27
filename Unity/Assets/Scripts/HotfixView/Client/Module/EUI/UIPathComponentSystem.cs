@@ -12,7 +12,7 @@ namespace ET.Client
             foreach (WindowID windowID in Enum.GetValues(typeof(WindowID)))
             {
                 string dlgName = "Dlg" + windowID.ToString().Split('_')[1];
-                string pathStr = "Assets/Bundles/UI/Demo/" + dlgName;
+                string pathStr = "Assets/Bundles/UI/Demo/Dlg/" + dlgName;
                // self.WindowPrefabPath.Add((int)windowID, dlgName);
                self.WindowPrefabPath.Add((int)windowID, pathStr);
                 self.WindowTypeIdDict.Add(dlgName, (int)windowID);
