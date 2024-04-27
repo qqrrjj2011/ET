@@ -61,15 +61,15 @@ namespace ET.Client
 
 			try
 			{
-				// int errorCode = await LoginHelper.GetRoles(self.ClientScene());
-				// if (errorCode != ErrorCode.ERR_Success)
-				// {
-				// 	Log.Error(errorCode.ToString());
-				// 	return;
-				// }
-				//
-				// self.ClientScene().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Roles);
-				// self.ClientScene().GetComponent<UIComponent>().CloseWindow(WindowID.WindowID_Server);
+				int errorCode = await LoginHelper.GetRoles(self.Root());
+				if (errorCode != ErrorCode.ERR_Success)
+				{
+					Log.Error(errorCode.ToString());
+					return;
+				}
+				
+				self.Root().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Role);
+				self.Root().GetComponent<UIComponent>().CloseWindow(WindowID.WindowID_Server);
 			}
 			catch (Exception e)
 			{

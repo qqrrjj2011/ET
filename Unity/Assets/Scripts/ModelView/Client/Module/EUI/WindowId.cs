@@ -1,4 +1,4 @@
-﻿namespace ET.Client
+namespace ET.Client
 {
     public enum WindowID
     {
@@ -10,5 +10,6 @@
         WindowID_Helper,   //提示界面
         
         WindowID_Server,
-    }
+    	WindowID_Role,
+	}
 }

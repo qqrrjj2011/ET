@@ -1568,6 +1568,301 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.C2A_GetRealmKey)]
+    [ResponseType(nameof(A2C_GetRealmKey))]
+    public partial class C2A_GetRealmKey : MessageObject, ISessionRequest
+    {
+        public static C2A_GetRealmKey Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2A_GetRealmKey), isFromPool) as C2A_GetRealmKey;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public string Token { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int ServerId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public long AccountId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Token = default;
+            this.ServerId = default;
+            this.AccountId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.A2C_GetRealmKey)]
+    public partial class A2C_GetRealmKey : MessageObject, ISessionResponse
+    {
+        public static A2C_GetRealmKey Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(A2C_GetRealmKey), isFromPool) as A2C_GetRealmKey;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(0)]
+        public string RealmKey { get; set; }
+
+        [MemoryPackOrder(1)]
+        public string RealmAddress { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.RealmKey = default;
+            this.RealmAddress = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.C2R_LoginRealm)]
+    [ResponseType(nameof(R2C_LoginRealm))]
+    public partial class C2R_LoginRealm : MessageObject, ISessionRequest
+    {
+        public static C2R_LoginRealm Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2R_LoginRealm), isFromPool) as C2R_LoginRealm;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long AccountId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public string RealmTokenKey { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.AccountId = default;
+            this.RealmTokenKey = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.R2C_LoginRealm)]
+    public partial class R2C_LoginRealm : MessageObject, ISessionResponse
+    {
+        public static R2C_LoginRealm Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(R2C_LoginRealm), isFromPool) as R2C_LoginRealm;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(0)]
+        public string GateSessionKey { get; set; }
+
+        [MemoryPackOrder(1)]
+        public string GateAddress { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.GateSessionKey = default;
+            this.GateAddress = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.C2G_LoginGameGate)]
+    [ResponseType(nameof(G2C_LoginGameGate))]
+    public partial class C2G_LoginGameGate : MessageObject, ISessionRequest
+    {
+        public static C2G_LoginGameGate Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2G_LoginGameGate), isFromPool) as C2G_LoginGameGate;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public string Key { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long RoleId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public long Account { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Key = default;
+            this.RoleId = default;
+            this.Account = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.G2C_LoginGameGate)]
+    public partial class G2C_LoginGameGate : MessageObject, ISessionResponse
+    {
+        public static G2C_LoginGameGate Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(G2C_LoginGameGate), isFromPool) as G2C_LoginGameGate;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long PlayerId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.PlayerId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.C2G_EnterGame)]
+    [ResponseType(nameof(G2C_EnterGame))]
+    public partial class C2G_EnterGame : MessageObject, ISessionRequest
+    {
+        public static C2G_EnterGame Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2G_EnterGame), isFromPool) as C2G_EnterGame;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.G2C_EnterGame)]
+    public partial class G2C_EnterGame : MessageObject, ISessionResponse
+    {
+        public static G2C_EnterGame Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(G2C_EnterGame), isFromPool) as G2C_EnterGame;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        /// <summary>
+        /// 自己unitId
+        /// </summary>
+        [MemoryPackOrder(3)]
+        public long MyId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.MyId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort HttpGetRouterResponse = 10002;
@@ -1617,5 +1912,13 @@ namespace ET
         public const ushort A2C_GetRoles = 10046;
         public const ushort C2A_DeleteRole = 10047;
         public const ushort A2C_DeleteRole = 10048;
+        public const ushort C2A_GetRealmKey = 10049;
+        public const ushort A2C_GetRealmKey = 10050;
+        public const ushort C2R_LoginRealm = 10051;
+        public const ushort R2C_LoginRealm = 10052;
+        public const ushort C2G_LoginGameGate = 10053;
+        public const ushort G2C_LoginGameGate = 10054;
+        public const ushort C2G_EnterGame = 10055;
+        public const ushort G2C_EnterGame = 10056;
     }
 }

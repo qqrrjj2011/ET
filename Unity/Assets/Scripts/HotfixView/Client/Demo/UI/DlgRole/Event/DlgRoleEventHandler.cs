@@ -1,8 +1,8 @@
 ﻿namespace ET.Client
 {
 	[FriendOf(typeof(UIBaseWindow))]
-	[AUIEvent(WindowID.WindowID_Login)]
-	public  class DlgLoginEventHandler : IAUIEventHandler
+	[AUIEvent(WindowID.WindowID_Role)]
+	public  class DlgRoleEventHandler : IAUIEventHandler
 	{
 
 		public void OnInitWindowCoreData(UIBaseWindow uiBaseWindow)
@@ -12,17 +12,17 @@
 
 		public void OnInitComponent(UIBaseWindow uiBaseWindow)
 		{
-		  uiBaseWindow.AddComponent<DlgLogin>().AddComponent<DlgLoginViewComponent>();
+		  uiBaseWindow.AddComponent<DlgRole>().AddComponent<DlgRoleViewComponent>();
 		}
 
 		public void OnRegisterUIEvent(UIBaseWindow uiBaseWindow)
 		{
-		  uiBaseWindow.GetComponent<DlgLogin>().RegisterUIEvent(); 
+		  uiBaseWindow.GetComponent<DlgRole>().RegisterUIEvent(); 
 		}
 
 		public void OnShowWindow(UIBaseWindow uiBaseWindow, Entity contextData = null)
 		{
-		  uiBaseWindow.GetComponent<DlgLogin>().ShowWindow(contextData); 
+		  uiBaseWindow.GetComponent<DlgRole>().ShowWindow(contextData); 
 		}
 
 		public void OnHideWindow(UIBaseWindow uiBaseWindow)

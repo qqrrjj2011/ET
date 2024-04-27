@@ -43,6 +43,11 @@ namespace ET.Server
             //     session.Disconnect().Coroutine();
             //     return;
             // }
+            
+            if (session.GetComponent<RoleInfosZone>() == null)
+            {
+                session.AddComponent<RoleInfosZone>();
+            }
 
             CoroutineLockComponent coroutineLockComponent = session.Root().GetComponent<CoroutineLockComponent>();
             using (session.AddComponent<SessionLockingComponent>())

@@ -21,6 +21,10 @@ namespace ET
         
         public const int  GetServerInfo = 12;
 
+        public const int CreateRole = 13;
+
         public const int Max = 100; // 这个必须最大
+        
+        
     }
 }

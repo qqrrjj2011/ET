@@ -2,6 +2,7 @@ namespace ET
 {
     public static partial class ErrorCode
     {
+
         public const int ERR_Success = 0;
 
         // 1-11004 是SocketError请看SocketError定义
@@ -59,6 +60,16 @@ namespace ET
         /// token错误
         /// </summary>
         public const int ERR_TokenError           = 200009;
+        
+        /// <summary>
+        /// 角色名称为空
+        /// </summary>
+        public const int ERR_RoleNameEmpty         = 200010;
+        /// <summary>
+        /// 查询不到角色
+        /// </summary>
+        public const int ERR_RoleNotExist          = 200011;
+
 
     }
 }
