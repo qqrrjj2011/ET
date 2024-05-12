@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ET.Server
 {
-    [FriendOf(typeof(RoleInfo))]
+    [FriendOf(typeof(ServerRoleInfo))]
     [MessageSessionHandler(SceneType.Realm)]
     public class C2A_GetRolesHandler : MessageSessionHandler<C2A_GetRoles,A2C_GetRoles>
     {
@@ -24,7 +24,7 @@ namespace ET.Server
                 return;
             }
             
-            string token = session.Root().GetComponent<TokenComponent>().Get(request.AccountId);
+            string token = session.Root().GetComponent<TokenComponent>().Get(request.Account);
 
             if (token == null || token != request.Token)
             {
@@ -36,10 +36,10 @@ namespace ET.Server
             
             using (session.AddComponent<SessionLockingComponent>())
             {
-                using (await session.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.CreateRole,request.AccountId))
+                using (await session.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.CreateRole,request.Account.GetHashCode()))
                 {
                     var roleInfos = await session.Root().GetComponent<DBManagerComponent>().GetZoneDB(session.Zone())
-                            .Query<RoleInfo>(d => d.AccountId == request.AccountId && d.ServerId == request.ServerId && d.State == (int)RoleInfoState.Normal);
+                            .Query<ServerRoleInfo>(d => d.Account == request.Account && d.ServerId == request.ServerId && d.State == (int)RoleInfoState.Normal);
 
                     if (roleInfos == null || roleInfos.Count == 0)
                     {
@@ -51,6 +51,7 @@ namespace ET.Server
                     foreach (var roleInfo in roleInfos)
                     {
                         response.RoleInfo.Add(roleInfo.ToMessage()); 
+                        Log.Warning(">>>>>>>>>roleID:"+roleInfo.Id);
                         roleInfo?.Dispose();
                     }
                     roleInfos.Clear();

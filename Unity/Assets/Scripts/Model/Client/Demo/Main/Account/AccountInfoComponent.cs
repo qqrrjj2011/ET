@@ -4,11 +4,11 @@ namespace ET.Client
     public class AccountInfoComponent:Entity,IAwake
     {
         public string Token;
-        public long AccountId;
+       // public long AccountId;
         public string RealmKey;
         public string RealmAddress;
         //1111 用户名
-        public string account;
+        public string Account;
     }
 }
 

@@ -1,13 +1,16 @@
 ﻿namespace ET.Client
 {
-    public struct Wait_CreateMyUnit: IWaitType
+    namespace WaitType
     {
-        public int Error
+        public struct Wait_CreateMyUnit : IWaitType
         {
-            get;
-            set;
-        }
+            public int Error
+            {
+                get;
+                set;
+            }
 
-        public M2C_CreateMyUnit Message;
+            public M2C_CreateMyUnit Message;
+        }
     }
 }

@@ -8,16 +8,21 @@
     }
     
     [ChildOf(typeof(PlayerComponent))]
-    public sealed class Player : Entity, IAwake<long>
+    public sealed class Player : Entity, IAwake<string,long>
     {
-        public long AccountId { get;  set; }
+        public string Account { get;  set; }
         
+        /// <summary>
+        /// UnitId = RoleId
+        /// </summary>
         public long UnitId { get; set; }
 
         public PlayerState PlayerState { get; set; }
 
-        public Session ClientSession { get; set; }
+       // public Session ClientSession { get; set; }
 
-        public long ChatInfoInstanceId { get; set; }
+        public ActorId ChatInfoActorId { get; set; }
+
+        public long ChatInfoInstanceID{ get; set; }
     }
 }

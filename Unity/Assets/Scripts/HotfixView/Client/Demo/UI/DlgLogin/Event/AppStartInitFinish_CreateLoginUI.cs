@@ -1,9 +1,9 @@
 ﻿namespace ET.Client
 {
 	[Event(SceneType.Demo)]
-	public class AppStartInitFinish_CreateLoginUI: AEvent<Scene, AppStartInitFinish>
+	public class AppStartInitFinish_CreateLoginUI: AEvent<Scene, EventType.AppStartInitFinish>
 	{
-		protected override async ETTask Run(Scene root, AppStartInitFinish args)
+		protected override async ETTask Run(Scene root, EventType.AppStartInitFinish args)
 		{
 			await root.GetComponent<UIComponent>().ShowWindowAsync(WindowID.WindowID_Login);
 		}

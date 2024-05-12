@@ -3,6 +3,7 @@
 namespace ET.Client
 {
     [EntitySystemOf(typeof(ClientSenderComponent))]
+    [FriendOf(typeof(RoleInfosComponent))]
     [FriendOf(typeof(ClientSenderComponent))]
     public static partial class ClientSenderComponentSystem
     {
@@ -46,6 +47,22 @@ namespace ET.Client
             main2NetClientLogin.Account = account;
             main2NetClientLogin.Password = password;
             NetClient2Main_Login response = await self.Root().GetComponent<ProcessInnerSender>().Call(self.netClientActorId, main2NetClientLogin) as NetClient2Main_Login;
+            return response;
+        }
+        
+        public static async ETTask<NetClient2Main_LoginGate> LoginGateAsync(this ClientSenderComponent self, string account, string token, string gateAddress)
+        {
+            long curRoleId = self.Root().GetComponent<RoleInfosComponent>().CurrentRoleId;
+            Main2NetClient_LoginGate main2NetClientLoginGate = Main2NetClient_LoginGate.Create();
+            main2NetClientLoginGate.OwnerFiberId = self.Fiber().Id;
+            main2NetClientLoginGate.Account = account;
+            main2NetClientLoginGate.GateToken = token;
+            main2NetClientLoginGate.GateAddress = gateAddress;
+            main2NetClientLoginGate.RoleId = curRoleId;
+            
+//            Log.Error("client sender roleId:"+curRoleId);
+ 
+            NetClient2Main_LoginGate response = await self.Root().GetComponent<ProcessInnerSender>().Call(self.netClientActorId, main2NetClientLoginGate) as NetClient2Main_LoginGate;
             return response;
         }
 

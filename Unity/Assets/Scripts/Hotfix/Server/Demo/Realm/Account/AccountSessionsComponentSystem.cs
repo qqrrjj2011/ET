@@ -12,9 +12,9 @@ namespace ET.Server
     [FriendOf(typeof(AccountSessionsComponent))]
     public static class AccountSessionsComponentSystem
     {
-        public static Session Get(this AccountSessionsComponent self, long accountId)
+        public static Session Get(this AccountSessionsComponent self, string account)
         {
-            if (!self.AccountSessionDictionary.TryGetValue(accountId,out EntityRef<Session> session))
+            if (!self.AccountSessionDictionary.TryGetValue(account,out EntityRef<Session> session))
             {
                 return null;
             }
@@ -22,22 +22,22 @@ namespace ET.Server
             return session;
         }
 
-        public static void Add(this AccountSessionsComponent self, long accountId, Session session)
+        public static void Add(this AccountSessionsComponent self, string account, Session session)
         {
-            if (self.AccountSessionDictionary.ContainsKey(accountId))
+            if (self.AccountSessionDictionary.ContainsKey(account))
             {
-                self.AccountSessionDictionary[accountId] = session;
+                self.AccountSessionDictionary[account] = session;
                 return;
             }
-            self.AccountSessionDictionary.Add(accountId,session);
+            self.AccountSessionDictionary.Add(account,session);
         }
 
 
-        public static void Remove(this AccountSessionsComponent self, long accountId)
+        public static void Remove(this AccountSessionsComponent self, string account)
         {
-            if (self.AccountSessionDictionary.ContainsKey(accountId))
+            if (self.AccountSessionDictionary.ContainsKey(account))
             {
-                self.AccountSessionDictionary.Remove(accountId);
+                self.AccountSessionDictionary.Remove(account);
             }
         }
 

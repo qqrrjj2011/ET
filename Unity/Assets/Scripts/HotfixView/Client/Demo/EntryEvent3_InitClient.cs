@@ -20,12 +20,13 @@ namespace ET.Client
             root.AddComponent<AccountInfoComponent>();
             root.AddComponent<ClientServerInfosComponent>();
             root.AddComponent<RoleInfosComponent>();
+            root.AddComponent<ChatComponent>();
             
             // 根据配置修改掉Main Fiber的SceneType
             SceneType sceneType = EnumHelper.FromString<SceneType>(globalComponent.GlobalConfig.AppType.ToString());
             root.SceneType = sceneType;
             
-            await EventSystem.Instance.PublishAsync(root, new AppStartInitFinish());
+            await EventSystem.Instance.PublishAsync(root, new EventType.AppStartInitFinish());
         }
     }
 }

@@ -6,9 +6,9 @@ namespace ET.Server
     public class TokenComponent:Entity,IAwake
     {
         /// <summary>
-        /// accountId - token
+        /// account - token
         /// </summary>
-        public readonly Dictionary<long, string> TokenDictionary = new Dictionary<long, string>();
+        public readonly Dictionary<string, string> TokenDictionary = new Dictionary<string, string>();
     }
     
 }

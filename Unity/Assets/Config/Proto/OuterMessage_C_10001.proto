@@ -174,7 +174,7 @@ message A2C_LoginAccount // ISessionResponse
 	int32 RpcId = 1;
 	int32 Error = 2;
 	string Message = 3;
-	int64  AccountId = 4;
+	string Account = 4;
 	string Token = 5;
 }
 
@@ -182,8 +182,9 @@ message A2C_LoginAccount // ISessionResponse
 message C2G_LoginGate // ISessionRequest
 {
 	int32 RpcId = 1;
-	int64 Key = 2;  // 帐号
+	string GateTokenKey = 2;   
 	int64 GateId = 3;
+	int64 RoleId = 4;
 }
 
 message G2C_LoginGate // ISessionResponse
@@ -264,7 +265,7 @@ message C2A_GetServerInfos // ISessionRequest
 {
 	int32 RpcId = 90;
 	string Token = 1;
-	int64 AccountId = 2;
+	string Account = 2;
 }
 
 
@@ -288,18 +289,19 @@ message ServerInfoProto
 message RoleInfoProto 
 {
 	int64 Id = 1;
-
+ 
 	string Name = 2;
 
 	int32 State = 3;
 
-	int64 AccountId = 4;
+	string Account = 4;
 
 	int64 LastLoginTime = 5;
 
 	int64 CreateTime = 6;
 
 	int32 ServerId = 7;
+
 }
 
 //ResponseType A2C_CreateRole
@@ -307,7 +309,7 @@ message C2A_CreateRole // ISessionRequest
 {
 	int32 RpcId     = 90;
 	string Token    = 1;
-	int64 AccountId = 2;
+	string  Account = 2;
 	string Name     = 3;
 	int32 ServerId  = 4;
 }
@@ -326,7 +328,7 @@ message C2A_GetRoles // ISessionRequest
 {
 	int32  RpcId     = 90;
 	string Token     = 1;
-	int64  AccountId = 2;
+	string  Account = 2;
 	int32  ServerId  = 3;
 }
 
@@ -345,8 +347,8 @@ message C2A_DeleteRole // ISessionRequest
 {
 	int32  RpcId      = 1;
 	string Token      = 2;
-	int64  AccountId  = 3;
-	int64  RoleInfoId = 4;
+	string  Account  = 3;
+	int64  RoleId = 4;
 	int32  ServerId   = 5;
 }
 
@@ -355,7 +357,7 @@ message A2C_DeleteRole  // ISessionResponse
 	int32 RpcId    = 1;
 	int32 Error    = 2;
 	string Message = 3;
-	int64  DeletedRoleInfoId = 4;
+	int64  DeletedRoleId = 4;
 }
 
 //ResponseType A2C_GetRealmKey
@@ -364,7 +366,7 @@ message C2A_GetRealmKey // ISessionRequest
 	int32   RpcId = 90;
 	string  Token  = 1;
 	int32   ServerId = 2;
-	int64  AccountId    = 3;
+	string  Account    = 3;
 }
 
 message A2C_GetRealmKey // ISessionResponse
@@ -381,7 +383,7 @@ message A2C_GetRealmKey // ISessionResponse
 message C2R_LoginRealm // ISessionRequest
 {
 	int32  RpcId = 90;
-	int64  AccountId        = 1;
+	string  Account        = 1;
 	string  RealmTokenKey   = 2;
 }
 
@@ -401,7 +403,7 @@ message C2G_LoginGameGate // ISessionRequest
 	int32 RpcId = 90;
 	string Key = 1;
 	int64 RoleId = 2;
-	int64 Account = 3;
+	string Account = 3;
 }
 
 message G2C_LoginGameGate // ISessionResponse
@@ -427,4 +429,45 @@ message G2C_EnterGame // ISessionResponse
 	string Message = 3;
 	// 自己unitId
 	int64 MyId = 4;
+}
+
+// ResponseType R2C_GetGateKey
+message C2R_GetGateKey // ISessionRequest
+{
+	int32 RpcId = 1;
+	string  Account = 2;  // 帐号
+	string  RealmTokenKey = 3;  // token
+}
+
+message R2C_GetGateKey // ISessionResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	string GateAddress = 4;
+	string GateSessionTokey = 5;
+	int64 GateId = 6;
+}
+
+
+//ResponseType Chat2C_SendChatInfo
+message C2Chat_SendChatInfo // IActorChatInfoRequest
+{
+	int32 RpcId         = 1;
+	string ChatMessage  = 2;
+}
+
+
+message Chat2C_SendChatInfo // IActorChatInfoResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+}
+
+
+message Chat2C_NoticeChatInfo // IMessage
+{
+	string Name = 1;
+	string ChatMessage = 2;
 }

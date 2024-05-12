@@ -20,7 +20,7 @@ namespace ET.Server
 				config.ActorId, r2GGetLoginKey);
 
 			response.Address = config.InnerIPPort.ToString();
-			response.Key = g2RGetLoginKey.Key;
+		//111	response.Key = g2RGetLoginKey.Key;
 			response.GateId = g2RGetLoginKey.GateId;
 
 			Log.Info(">>>>>>>>>>>response.Address:"+response.Address  + "response.Key:"+response.Key);

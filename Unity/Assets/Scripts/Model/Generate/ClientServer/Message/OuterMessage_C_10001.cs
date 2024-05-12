@@ -793,7 +793,7 @@ namespace ET
         public string Message { get; set; }
 
         [MemoryPackOrder(3)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         [MemoryPackOrder(4)]
         public string Token { get; set; }
@@ -808,7 +808,7 @@ namespace ET
             this.RpcId = default;
             this.Error = default;
             this.Message = default;
-            this.AccountId = default;
+            this.Account = default;
             this.Token = default;
 
             ObjectPool.Instance.Recycle(this);
@@ -828,14 +828,14 @@ namespace ET
         [MemoryPackOrder(0)]
         public int RpcId { get; set; }
 
-        /// <summary>
-        /// 帐号
-        /// </summary>
         [MemoryPackOrder(1)]
-        public long Key { get; set; }
+        public string GateTokenKey { get; set; }
 
         [MemoryPackOrder(2)]
         public long GateId { get; set; }
+
+        [MemoryPackOrder(3)]
+        public long RoleId { get; set; }
 
         public override void Dispose()
         {
@@ -845,8 +845,9 @@ namespace ET
             }
 
             this.RpcId = default;
-            this.Key = default;
+            this.GateTokenKey = default;
             this.GateId = default;
+            this.RoleId = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1199,7 +1200,7 @@ namespace ET
         public string Token { get; set; }
 
         [MemoryPackOrder(1)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         public override void Dispose()
         {
@@ -1210,7 +1211,7 @@ namespace ET
 
             this.RpcId = default;
             this.Token = default;
-            this.AccountId = default;
+            this.Account = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1305,7 +1306,7 @@ namespace ET
         public int State { get; set; }
 
         [MemoryPackOrder(3)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         [MemoryPackOrder(4)]
         public long LastLoginTime { get; set; }
@@ -1326,7 +1327,7 @@ namespace ET
             this.Id = default;
             this.Name = default;
             this.State = default;
-            this.AccountId = default;
+            this.Account = default;
             this.LastLoginTime = default;
             this.CreateTime = default;
             this.ServerId = default;
@@ -1352,7 +1353,7 @@ namespace ET
         public string Token { get; set; }
 
         [MemoryPackOrder(1)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         [MemoryPackOrder(2)]
         public string Name { get; set; }
@@ -1369,7 +1370,7 @@ namespace ET
 
             this.RpcId = default;
             this.Token = default;
-            this.AccountId = default;
+            this.Account = default;
             this.Name = default;
             this.ServerId = default;
 
@@ -1431,7 +1432,7 @@ namespace ET
         public string Token { get; set; }
 
         [MemoryPackOrder(1)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         [MemoryPackOrder(2)]
         public int ServerId { get; set; }
@@ -1445,7 +1446,7 @@ namespace ET
 
             this.RpcId = default;
             this.Token = default;
-            this.AccountId = default;
+            this.Account = default;
             this.ServerId = default;
 
             ObjectPool.Instance.Recycle(this);
@@ -1506,10 +1507,10 @@ namespace ET
         public string Token { get; set; }
 
         [MemoryPackOrder(2)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         [MemoryPackOrder(3)]
-        public long RoleInfoId { get; set; }
+        public long RoleId { get; set; }
 
         [MemoryPackOrder(4)]
         public int ServerId { get; set; }
@@ -1523,8 +1524,8 @@ namespace ET
 
             this.RpcId = default;
             this.Token = default;
-            this.AccountId = default;
-            this.RoleInfoId = default;
+            this.Account = default;
+            this.RoleId = default;
             this.ServerId = default;
 
             ObjectPool.Instance.Recycle(this);
@@ -1550,7 +1551,7 @@ namespace ET
         public string Message { get; set; }
 
         [MemoryPackOrder(3)]
-        public long DeletedRoleInfoId { get; set; }
+        public long DeletedRoleId { get; set; }
 
         public override void Dispose()
         {
@@ -1562,7 +1563,7 @@ namespace ET
             this.RpcId = default;
             this.Error = default;
             this.Message = default;
-            this.DeletedRoleInfoId = default;
+            this.DeletedRoleId = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1588,7 +1589,7 @@ namespace ET
         public int ServerId { get; set; }
 
         [MemoryPackOrder(2)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         public override void Dispose()
         {
@@ -1600,7 +1601,7 @@ namespace ET
             this.RpcId = default;
             this.Token = default;
             this.ServerId = default;
-            this.AccountId = default;
+            this.Account = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -1661,7 +1662,7 @@ namespace ET
         public int RpcId { get; set; }
 
         [MemoryPackOrder(0)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         [MemoryPackOrder(1)]
         public string RealmTokenKey { get; set; }
@@ -1674,7 +1675,7 @@ namespace ET
             }
 
             this.RpcId = default;
-            this.AccountId = default;
+            this.Account = default;
             this.RealmTokenKey = default;
 
             ObjectPool.Instance.Recycle(this);
@@ -1742,7 +1743,7 @@ namespace ET
         public long RoleId { get; set; }
 
         [MemoryPackOrder(2)]
-        public long Account { get; set; }
+        public string Account { get; set; }
 
         public override void Dispose()
         {
@@ -1863,6 +1864,183 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(OuterMessage.C2R_GetGateKey)]
+    [ResponseType(nameof(R2C_GetGateKey))]
+    public partial class C2R_GetGateKey : MessageObject, ISessionRequest
+    {
+        public static C2R_GetGateKey Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2R_GetGateKey), isFromPool) as C2R_GetGateKey;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        /// <summary>
+        /// 帐号
+        /// </summary>
+        [MemoryPackOrder(1)]
+        public string Account { get; set; }
+
+        /// <summary>
+        /// token
+        /// </summary>
+        [MemoryPackOrder(2)]
+        public string RealmTokenKey { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Account = default;
+            this.RealmTokenKey = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.R2C_GetGateKey)]
+    public partial class R2C_GetGateKey : MessageObject, ISessionResponse
+    {
+        public static R2C_GetGateKey Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(R2C_GetGateKey), isFromPool) as R2C_GetGateKey;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(3)]
+        public string GateAddress { get; set; }
+
+        [MemoryPackOrder(4)]
+        public string GateSessionTokey { get; set; }
+
+        [MemoryPackOrder(5)]
+        public long GateId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.GateAddress = default;
+            this.GateSessionTokey = default;
+            this.GateId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.C2Chat_SendChatInfo)]
+    [ResponseType(nameof(Chat2C_SendChatInfo))]
+    public partial class C2Chat_SendChatInfo : MessageObject, IActorChatInfoRequest
+    {
+        public static C2Chat_SendChatInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(C2Chat_SendChatInfo), isFromPool) as C2Chat_SendChatInfo;
+        }
+
+        [MemoryPackOrder(0)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public string ChatMessage { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.ChatMessage = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.Chat2C_SendChatInfo)]
+    public partial class Chat2C_SendChatInfo : MessageObject, IActorChatInfoResponse
+    {
+        public static Chat2C_SendChatInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Chat2C_SendChatInfo), isFromPool) as Chat2C_SendChatInfo;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(OuterMessage.Chat2C_NoticeChatInfo)]
+    public partial class Chat2C_NoticeChatInfo : MessageObject, IMessage
+    {
+        public static Chat2C_NoticeChatInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Chat2C_NoticeChatInfo), isFromPool) as Chat2C_NoticeChatInfo;
+        }
+
+        [MemoryPackOrder(0)]
+        public string Name { get; set; }
+
+        [MemoryPackOrder(1)]
+        public string ChatMessage { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.Name = default;
+            this.ChatMessage = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class OuterMessage
     {
         public const ushort HttpGetRouterResponse = 10002;
@@ -1920,5 +2098,10 @@ namespace ET
         public const ushort G2C_LoginGameGate = 10054;
         public const ushort C2G_EnterGame = 10055;
         public const ushort G2C_EnterGame = 10056;
+        public const ushort C2R_GetGateKey = 10057;
+        public const ushort R2C_GetGateKey = 10058;
+        public const ushort C2Chat_SendChatInfo = 10059;
+        public const ushort Chat2C_SendChatInfo = 10060;
+        public const ushort Chat2C_NoticeChatInfo = 10061;
     }
 }

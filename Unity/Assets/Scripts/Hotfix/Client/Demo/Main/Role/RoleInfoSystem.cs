@@ -5,10 +5,9 @@
     {
         public static void FromMessage(this RoleInfo self, RoleInfoProto roleInfoProto)
         {
-           // self.Id = roleInfoProto.Id;
             self.Name = roleInfoProto.Name;
             self.State = roleInfoProto.State;
-            self.AccountId = roleInfoProto.AccountId;
+            self.Account = roleInfoProto.Account;
             self.CreateTime = roleInfoProto.CreateTime;
             self.ServerId = roleInfoProto.ServerId;
             self.LastLoginTime = roleInfoProto.LastLoginTime;
@@ -20,7 +19,7 @@
             roleInfoProto.Id = self.Id;
             roleInfoProto.Name = self.Name;
             roleInfoProto.State = self.State;
-            roleInfoProto.AccountId = self.AccountId;
+            roleInfoProto.Account = self.Account;
             roleInfoProto.CreateTime = self.CreateTime;
             roleInfoProto.ServerId = self.ServerId;
             roleInfoProto.LastLoginTime = self.LastLoginTime;

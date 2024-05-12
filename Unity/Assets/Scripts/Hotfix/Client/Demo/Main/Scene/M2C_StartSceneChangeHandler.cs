@@ -5,6 +5,7 @@
 	{
 		protected override async ETTask Run(Scene root, M2C_StartSceneChange message)
 		{
+			Log.Warning(">>>>>>>>>>>>run M2C_StartSceneChangeHandler");
 			await SceneChangeHelper.SceneChangeTo(root, message.SceneName, message.SceneInstanceId);
 		}
 	}

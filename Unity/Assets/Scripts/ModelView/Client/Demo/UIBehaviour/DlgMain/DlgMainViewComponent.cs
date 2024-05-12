@@ -1,0 +1,169 @@
+﻿
+using UnityEngine;
+using UnityEngine.UI;
+namespace ET.Client
+{
+	[ComponentOf(typeof(DlgMain))]
+	[EnableMethod]
+	public  class DlgMainViewComponent : Entity,IAwake,IDestroy 
+	{
+		public UnityEngine.UI.Button E_BagButtonButton
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_BagButtonButton == null )
+     			{
+		    		this.m_E_BagButtonButton = UIFindHelper.FindDeepChild<UnityEngine.UI.Button>(this.uiTransform.gameObject,"UI/Bottom/E_BagButton");
+     			}
+     			return this.m_E_BagButtonButton;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_BagButtonImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_BagButtonImage == null )
+     			{
+		    		this.m_E_BagButtonImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"UI/Bottom/E_BagButton");
+     			}
+     			return this.m_E_BagButtonImage;
+     		}
+     	}
+
+		public UnityEngine.UI.Button E_ChatButtonButton
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_ChatButtonButton == null )
+     			{
+		    		this.m_E_ChatButtonButton = UIFindHelper.FindDeepChild<UnityEngine.UI.Button>(this.uiTransform.gameObject,"UI/Bottom/E_ChatButton");
+     			}
+     			return this.m_E_ChatButtonButton;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_ChatButtonImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_ChatButtonImage == null )
+     			{
+		    		this.m_E_ChatButtonImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"UI/Bottom/E_ChatButton");
+     			}
+     			return this.m_E_ChatButtonImage;
+     		}
+     	}
+
+		public UnityEngine.UI.Button E_RankButtonButton
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_RankButtonButton == null )
+     			{
+		    		this.m_E_RankButtonButton = UIFindHelper.FindDeepChild<UnityEngine.UI.Button>(this.uiTransform.gameObject,"UI/Bottom/E_RankButton");
+     			}
+     			return this.m_E_RankButtonButton;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_RankButtonImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_RankButtonImage == null )
+     			{
+		    		this.m_E_RankButtonImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"UI/Bottom/E_RankButton");
+     			}
+     			return this.m_E_RankButtonImage;
+     		}
+     	}
+
+		public UnityEngine.UI.Button E_TaskButtonButton
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_TaskButtonButton == null )
+     			{
+		    		this.m_E_TaskButtonButton = UIFindHelper.FindDeepChild<UnityEngine.UI.Button>(this.uiTransform.gameObject,"UI/Bottom/E_TaskButton");
+     			}
+     			return this.m_E_TaskButtonButton;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_TaskButtonImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_TaskButtonImage == null )
+     			{
+		    		this.m_E_TaskButtonImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"UI/Bottom/E_TaskButton");
+     			}
+     			return this.m_E_TaskButtonImage;
+     		}
+     	}
+
+		public void DestroyWidget()
+		{
+			this.m_E_BagButtonButton = null;
+			this.m_E_BagButtonImage = null;
+			this.m_E_ChatButtonButton = null;
+			this.m_E_ChatButtonImage = null;
+			this.m_E_RankButtonButton = null;
+			this.m_E_RankButtonImage = null;
+			this.m_E_TaskButtonButton = null;
+			this.m_E_TaskButtonImage = null;
+			this.uiTransform = null;
+		}
+
+		private UnityEngine.UI.Button m_E_BagButtonButton = null;
+		private UnityEngine.UI.Image m_E_BagButtonImage = null;
+		private UnityEngine.UI.Button m_E_ChatButtonButton = null;
+		private UnityEngine.UI.Image m_E_ChatButtonImage = null;
+		private UnityEngine.UI.Button m_E_RankButtonButton = null;
+		private UnityEngine.UI.Image m_E_RankButtonImage = null;
+		private UnityEngine.UI.Button m_E_TaskButtonButton = null;
+		private UnityEngine.UI.Image m_E_TaskButtonImage = null;
+		public Transform uiTransform = null;
+	}
+}

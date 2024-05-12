@@ -13,7 +13,7 @@
             MailBoxComponent mailBoxComponent = args.MailBoxComponent;
             
             MessageObject messageObject = args.MessageObject;
-            
+            Log.Warning($">>>>>>HandleAsync  mailBoxComponent.Parent InstanceId:{mailBoxComponent.Parent.InstanceId} sceneType:{mailBoxComponent.Parent.IScene.SceneType} messageObject:{messageObject}");
             await MessageDispatcher.Instance.Handle(mailBoxComponent.Parent, args.FromAddress, messageObject);
         }
     }

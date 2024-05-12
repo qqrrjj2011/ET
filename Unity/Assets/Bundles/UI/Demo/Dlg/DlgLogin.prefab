@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 222413101418373256}
   - component: {fileID: 114822005217712104}
   m_Layer: 5
-  m_Name: E_AccountText
+  m_Name: AccountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 114107327146574444}
   - component: {fileID: 114663064108016614}
   m_Layer: 5
-  m_Name: Password
+  m_Name: E_Password
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 114899069937167200}
   - component: {fileID: 114341495829030012}
   m_Layer: 5
-  m_Name: Account
+  m_Name: E_Account
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 2798552886333538358}
   - component: {fileID: 6441090958199208589}
   m_Layer: 5
-  m_Name: E_PassWordText
+  m_Name: PassWordText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

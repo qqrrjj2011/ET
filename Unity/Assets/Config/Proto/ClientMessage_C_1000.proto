@@ -18,7 +18,27 @@ message NetClient2Main_Login // IResponse
 	string Message = 3;
 
 	int64 PlayerId = 4;
-	int64 AccountId = 5;
+	string Account = 5;
 	string Token = 6;
 
+}
+
+// ResponseType NetClient2Main_LoginGate
+message Main2NetClient_LoginGate // IRequest
+{
+	int32 RpcId          = 1;
+	int32 OwnerFiberId   = 2;
+	string Account       = 3;		// 账号
+	string GateToken     = 4;  // token
+	string GateAddress   = 5; 	// gate 地址
+	int64  GetSessionKey = 6;
+	int64  RoleId        = 7;
+}
+
+message NetClient2Main_LoginGate // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 PlayerId = 4;
 }

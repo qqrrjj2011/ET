@@ -142,10 +142,11 @@ namespace ET
         public const int Mask20bit = 0xfffff;
         
         private long epoch2022;
-        
         private int value;
         private int instanceIdValue;
         
+        private long epochThisYear;
+        private uint lastInstanceIdTime;
         
         private ushort unitIdValue;
         private uint lastIdTime;
@@ -155,11 +156,38 @@ namespace ET
         {
             long epoch1970tick = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks / 10000;
             this.epoch2022 = new DateTime(2022, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks / 10000 - epoch1970tick;
+            
+            this.epochThisYear = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks / 10000 - epoch1970tick;
+            
+            this.lastInstanceIdTime = TimeSinceThisYear();
+            if (this.lastInstanceIdTime <= 0)
+            {
+                Log.Warning($"lastInstanceIdTime less than 0: {this.lastInstanceIdTime}");
+                this.lastInstanceIdTime = 1;
+            }
+            this.lastIdTime = TimeSince2022();
+            if (this.lastIdTime <= 0)
+            {
+                Log.Warning($"lastIdTime less than 0: {this.lastIdTime}");
+                this.lastIdTime = 1;
+            }
+            this.lastUnitIdTime = TimeSince2022();
+            if (this.lastUnitIdTime <= 0)
+            {
+                Log.Warning($"lastUnitIdTime less than 0: {this.lastUnitIdTime}");
+                this.lastUnitIdTime = 1;
+            }
         }
 
         private uint TimeSince2022()
         {
             uint a = (uint)((TimeInfo.Instance.FrameTime - this.epoch2022) / 1000);
+            return a;
+        }
+        
+        private uint TimeSinceThisYear()
+        {
+            uint a = (uint)((TimeInfo.Instance.FrameTime - this.epochThisYear) / 1000);
             return a;
         }
         
@@ -187,7 +215,7 @@ namespace ET
             {
                 throw new Exception($"zone > MaxZone: {zone}");
             }
-            uint time = TimeSince2020();
+            uint time = TimeSince2022();
 
             if (time > this.lastUnitIdTime)
             {
@@ -210,11 +238,11 @@ namespace ET
             return unitIdStruct.ToLong();
         }
         
-        private uint TimeSince2020()
-        { 
-            uint a = (uint)((TimeInfo.Instance.FrameTime - this.epoch2022) / 1000);
-            return a;
-        }
+        // private uint TimeSince2020()
+        // { 
+        //     uint a = (uint)((TimeInfo.Instance.FrameTime - this.epoch2022) / 1000);
+        //     return a;
+        // }
         
         public long GenerateInstanceId()
         {

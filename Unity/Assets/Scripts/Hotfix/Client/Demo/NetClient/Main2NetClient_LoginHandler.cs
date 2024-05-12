@@ -51,7 +51,7 @@ namespace ET.Client
 
             if (a2CLoginAccount.Error == ErrorCode.ERR_Success)
             {
-                response.AccountId = a2CLoginAccount.AccountId;
+                response.Account = a2CLoginAccount.Account;
                 response.Token = a2CLoginAccount.Token;
                 
                 // 先把session保存起来
@@ -59,7 +59,6 @@ namespace ET.Client
             }
             
             
- 
 
             // 创建一个gate Session,并且保存到SessionComponent中
             // Session gateSession = await netComponent.CreateRouterSession(NetworkHelper.ToIPEndPoint(r2CLogin.Address), account, password);

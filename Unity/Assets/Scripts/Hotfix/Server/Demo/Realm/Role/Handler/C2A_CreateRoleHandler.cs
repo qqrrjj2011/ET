@@ -2,7 +2,7 @@
 
 namespace ET.Server
 {
-    [FriendOf(typeof(RoleInfo))]
+    [FriendOf(typeof(ServerRoleInfo))]
     [MessageSessionHandler(SceneType.Realm)]
     public class C2A_CreateRoleHandler : MessageSessionHandler<C2A_CreateRole,A2C_CreateRole>
     {
@@ -23,7 +23,7 @@ namespace ET.Server
                 return;
             }
             
-            string token = session.Root().GetComponent<TokenComponent>().Get(request.AccountId);
+            string token = session.Root().GetComponent<TokenComponent>().Get(request.Account);
 
             if (token == null || token != request.Token)
             {
@@ -42,34 +42,37 @@ namespace ET.Server
 
             using (session.AddComponent<SessionLockingComponent>())
             {
-                using (await session.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.CreateRole,request.AccountId))
+                using (await session.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.CreateRole,request.Account.GetHashCode()))
                 {
                     var roleInfos = await session.Root().GetComponent<DBManagerComponent>().GetZoneDB(session.Zone())
-                            .Query<RoleInfo>(d => d.Name == request.Name && d.ServerId == request.ServerId && d.State != (int)RoleInfoState.Freeze);
+                            .Query<ServerRoleInfo>(d => d.Name == request.Name && d.ServerId == request.ServerId && d.State != (int)RoleInfoState.Freeze);
 
+                    // 重名
                     if (roleInfos != null && roleInfos.Count > 0)
                     {
-                        response.Error = ErrorCode.ERR_RoleNameEmpty;
-                     //   reply();
+                        response.Error = ErrorCode.ERR_RoleNameRepeat;
+                     // reply();
                         return;
                     }
 
-                    RoleInfo newRoleInfo = session.GetComponent<RoleInfosZone>().AddChildWithId<RoleInfo>(IdGenerater.Instance.GenerateUnitId(request.ServerId));
-                    newRoleInfo.Name = request.Name;
-                    newRoleInfo.State = (int)RoleInfoState.Normal;
-                    newRoleInfo.ServerId = request.ServerId;
-                    newRoleInfo.AccountId = request.AccountId;
-                    newRoleInfo.CreateTime = TimeInfo.Instance.ServerNow();
-                    newRoleInfo.LastLoginTime = 0;
+                    long roleID = IdGenerater.Instance.GenerateUnitId(request.ServerId);
+                    ServerRoleInfo newServerRoleInfo = session.GetComponent<RoleInfosZone>().AddChildWithId<ServerRoleInfo>(roleID);
+                    newServerRoleInfo.Name = request.Name;
+                    newServerRoleInfo.State = (int)RoleInfoState.Normal;
+                    newServerRoleInfo.ServerId = request.ServerId;
+                    newServerRoleInfo.Account = request.Account;
+                    newServerRoleInfo.CreateTime = TimeInfo.Instance.ServerNow();
+                    newServerRoleInfo.LastLoginTime = 0;
+                    
+                    Log.Warning(">>>>>>>>>newServerRoleInfo:"+newServerRoleInfo.Id);
 
-                    await session.Root().GetComponent<DBManagerComponent>().GetZoneDB(session.Zone()).Save<RoleInfo>(newRoleInfo);
+                    await session.Root().GetComponent<DBManagerComponent>().GetZoneDB(session.Zone()).Save<ServerRoleInfo>(newServerRoleInfo);
 
-                    response.RoleInfo = newRoleInfo.ToMessage();
+                    response.RoleInfo = newServerRoleInfo.ToMessage();
+                    
+                    // reply();
 
-                  //  reply();
-
-                    newRoleInfo?.Dispose();
-
+                    newServerRoleInfo?.Dispose();
                 }
             }
            

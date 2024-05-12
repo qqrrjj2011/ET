@@ -12,7 +12,7 @@ namespace ET.Server
     [FriendOf(typeof(LoginInfoRecordComponent))]
     public static class LoginInfoRecordComponentSystem
     {
-        public static void Add(this LoginInfoRecordComponent self, long key, int value)
+        public static void Add(this LoginInfoRecordComponent self, string key, int value)
         {
             if (self.AccountLoginInfoDict.ContainsKey(key))
             {
@@ -22,7 +22,7 @@ namespace ET.Server
             self.AccountLoginInfoDict.Add(key,value);
         }
 
-        public static void Remove(this LoginInfoRecordComponent self, long key)
+        public static void Remove(this LoginInfoRecordComponent self, string key)
         {
             if (self.AccountLoginInfoDict.ContainsKey(key))
             {
@@ -30,7 +30,7 @@ namespace ET.Server
             }
         }
 
-        public static int Get(this LoginInfoRecordComponent self, long key)
+        public static int Get(this LoginInfoRecordComponent self, string key)
         {
             if (!self.AccountLoginInfoDict.TryGetValue(key,out int value))
             {
@@ -40,7 +40,7 @@ namespace ET.Server
             return value;
         }
 
-        public static bool IsExist(this LoginInfoRecordComponent self, long key)
+        public static bool IsExist(this LoginInfoRecordComponent self, string key)
         {
             return self.AccountLoginInfoDict.ContainsKey(key);
         }

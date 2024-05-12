@@ -19,11 +19,11 @@ namespace ET.Server
     }
 
     [FriendOf(typeof(AccountCheckOutTimeComponent))]
-    public class AccountCheckOutTimeComponentAwakeSystem: AwakeSystem<AccountCheckOutTimeComponent,long>
+    public class AccountCheckOutTimeComponentAwakeSystem: AwakeSystem<AccountCheckOutTimeComponent,string>
     {
-        protected override void Awake(AccountCheckOutTimeComponent self, long accountId)
+        protected override void Awake(AccountCheckOutTimeComponent self, string account)
         {
-            self.AccountId = accountId;
+            self.Account = account;
             self.Root().GetComponent<TimerComponent>().Remove(ref self.Timer);
             self.Timer = self.Root().GetComponent<TimerComponent>().NewOnceTimer(TimeInfo.Instance.ServerNow() + 600000, TimerInvokeType.AccountSessionCheckOutTime, self);
         }
@@ -34,7 +34,7 @@ namespace ET.Server
     {
         protected override void Destroy(AccountCheckOutTimeComponent self)
         {
-            self.AccountId = 0;
+            self.Account = "";
             self.Root().GetComponent<TimerComponent>().Remove(ref self.Timer);
         }
     }
@@ -46,10 +46,10 @@ namespace ET.Server
         {
             Session session = self.GetParent<Session>();
 
-            Session otherSession = session.Root().GetComponent<AccountSessionsComponent>().Get(self.AccountId);
+            Session otherSession = session.Root().GetComponent<AccountSessionsComponent>().Get(self.Account);
             if (session.InstanceId == otherSession.InstanceId)
             {
-                session.Root().GetComponent<AccountSessionsComponent>().Remove(self.AccountId);
+                session.Root().GetComponent<AccountSessionsComponent>().Remove(self.Account);
             }
              
             A2C_Disconnect a2CDisconnect = A2C_Disconnect.Create();

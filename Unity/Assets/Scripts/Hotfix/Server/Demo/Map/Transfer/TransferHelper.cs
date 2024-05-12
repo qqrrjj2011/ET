@@ -19,7 +19,7 @@ namespace ET.Server
             
             // location加锁
             long unitId = unit.Id;
-            
+            // 应该写成G2M_UnitTransferRequest
             M2M_UnitTransferRequest request = M2M_UnitTransferRequest.Create();
             request.OldActorId = unit.GetActorId();
             request.Unit = unit.ToBson();
@@ -34,6 +34,7 @@ namespace ET.Server
             
             await root.GetComponent<LocationProxyComponent>().Lock(LocationType.Unit, unitId, request.OldActorId);
             await root.GetComponent<MessageSender>().Call(sceneInstanceId, request);
+            
         }
     }
 }

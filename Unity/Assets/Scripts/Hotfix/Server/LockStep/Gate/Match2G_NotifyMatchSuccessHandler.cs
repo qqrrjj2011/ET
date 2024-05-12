@@ -10,7 +10,7 @@ namespace ET.Server
 		{
 			player.AddComponent<PlayerRoomComponent>().RoomActorId = message.ActorId;
 			
-			player.GetComponent<PlayerSessionComponent>().Session.Send(message);
+			player.GetComponent<PlayerSessionComponent>().gateSession.Send(message);
 			await ETTask.CompletedTask;
 		}
 	}

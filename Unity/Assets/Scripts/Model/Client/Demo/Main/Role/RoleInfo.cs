@@ -19,7 +19,7 @@ namespace ET.Client
 
         public int State;
 
-        public long AccountId;
+        public string Account;
 
         public long LastLoginTime;
 

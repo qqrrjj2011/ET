@@ -5,9 +5,10 @@
     public static partial class PlayerSystem
     {
         [EntitySystem]
-        private static void Awake(this Player self, long a)
+        private static void Awake(this Player self,  string a, long b)
         {
-            self.AccountId = a;
+            self.Account = a;
+            self.UnitId = b;
         }
     }
 }

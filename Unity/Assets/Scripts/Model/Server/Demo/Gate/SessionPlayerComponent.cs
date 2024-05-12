@@ -5,9 +5,9 @@
 	{
 		private EntityRef<Player> player;
 		
-		public long PlayerId;
-		public long PlayerInstanceId;
-		public long AccountId;
+		// public long PlayerId;
+		// public long PlayerInstanceId;
+		// public string Account;
 		public bool isLoginAgain = false;
 
 		public Player Player

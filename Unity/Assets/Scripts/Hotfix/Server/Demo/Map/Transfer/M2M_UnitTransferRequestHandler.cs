@@ -13,6 +13,8 @@ namespace ET.Server
 
             unitComponent.AddChild(unit);
             unitComponent.Add(unit);
+            
+            unit.AddComponent<UnitDBSaveComponent>();
 
             foreach (byte[] bytes in request.Entitys)
             {
@@ -36,6 +38,18 @@ namespace ET.Server
             M2C_CreateMyUnit m2CCreateUnits = M2C_CreateMyUnit.Create();
             m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
             MapMessageHelper.SendToClient(unit, m2CCreateUnits);
+            
+            //通知客户端同步背包信息
+            // ItemUpdateNoticeHelper.SyncAllBagItems(unit);
+            // ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
+            //
+            // //通知客户端同步打造信息
+            // ForgeHelper.SyncAllProduction(unit);
+			         //
+            // TaskNoticeHelper.SyncAllTaskInfo(unit);
+            
+            // unit.AddComponent<NumericNoticeComponent>();
+            // unit.AddComponent<AdventureCheckComponent>();
 
             // 加入aoi
             unit.AddComponent<AOIEntity, int, float3>(9 * 1000, unit.Position);

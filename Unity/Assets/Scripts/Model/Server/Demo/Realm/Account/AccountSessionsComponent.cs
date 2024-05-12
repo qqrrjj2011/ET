@@ -6,9 +6,9 @@ namespace ET.Server
     public class AccountSessionsComponent: Entity,IAwake,IDestroy
     {
         /// <summary>
-        /// accountId-sessionInstanceId
+        /// account-GateSessionKey(token)
         /// </summary>
-        public Dictionary<long, EntityRef<Session>> AccountSessionDictionary = new Dictionary<long, EntityRef<Session>>();
+        public Dictionary<string, EntityRef<Session>> AccountSessionDictionary = new Dictionary<string, EntityRef<Session>>();
     }
 }
 

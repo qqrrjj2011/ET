@@ -76,7 +76,7 @@ namespace ET.Client
 				itemRole.BindTrans(tr);
 
 				RoleInfo roleInfo = self.Root().GetComponent<RoleInfosComponent>().RoleInfos[index];
-				itemRole.ELabel_NumText.text = roleInfo.Id + "";
+				itemRole.ELabel_NumText.text = (index + 1) + "";
 				itemRole.ELabel_RoleNameText.text = roleInfo.Name;
 				itemRole.EButton_SelectButton.onClick.AddListener(() =>
 				{
@@ -99,20 +99,22 @@ namespace ET.Client
 
 				try
 				{
-					int error_code = await LoginHelper.GetRealmKey(self.Root());
-					if (error_code != ErrorCode.ERR_Success)
-					{
-						Log.Error(error_code.ToString());
-						return;
-					}
+					// int error_code = await LoginHelper.GetRealmKey(self.Root());
+					// if (error_code != ErrorCode.ERR_Success)
+					// {
+					// 	Log.Error(error_code.ToString());
+					// 	return;
+					// }
 
-					error_code = await LoginHelper.EnterGame(self.Root());
+					int error_code = await LoginHelper.EnterGame(self.Root());
 					if (error_code != ErrorCode.ERR_Success)
 					{
 						Log.Error(error_code.ToString());
 						return;
 					}
 					self.Root().GetComponent<UIComponent>().HideWindow(WindowID.WindowID_Role);
+					self.Root().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Main);
+					Log.Info(">>>>>>>>>进入游戏场景成功");
 				}
 				catch (Exception e)
 				{

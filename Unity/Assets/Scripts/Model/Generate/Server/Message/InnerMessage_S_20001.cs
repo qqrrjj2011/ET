@@ -642,7 +642,7 @@ namespace ET
         public string Message { get; set; }
 
         [MemoryPackOrder(3)]
-        public long Key { get; set; }
+        public string GateToken { get; set; }
 
         [MemoryPackOrder(4)]
         public long GateId { get; set; }
@@ -657,7 +657,7 @@ namespace ET
             this.RpcId = default;
             this.Error = default;
             this.Message = default;
-            this.Key = default;
+            this.GateToken = default;
             this.GateId = default;
 
             ObjectPool.Instance.Recycle(this);
@@ -811,7 +811,7 @@ namespace ET
         public int RpcId { get; set; }
 
         [MemoryPackOrder(1)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         public override void Dispose()
         {
@@ -821,7 +821,7 @@ namespace ET
             }
 
             this.RpcId = default;
-            this.AccountId = default;
+            this.Account = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -874,7 +874,7 @@ namespace ET
         public int RpcId { get; set; }
 
         [MemoryPackOrder(1)]
-        public long AccountId { get; set; }
+        public string Account { get; set; }
 
         public override void Dispose()
         {
@@ -884,7 +884,7 @@ namespace ET
             }
 
             this.RpcId = default;
-            this.AccountId = default;
+            this.Account = default;
 
             ObjectPool.Instance.Recycle(this);
         }
@@ -906,6 +906,495 @@ namespace ET
         public int Error { get; set; }
 
         [MemoryPackOrder(2)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.G2L_AddLoginRecord)]
+    [ResponseType(nameof(L2G_AddLoginRecord))]
+    public partial class G2L_AddLoginRecord : MessageObject, IRequest
+    {
+        public static G2L_AddLoginRecord Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(G2L_AddLoginRecord), isFromPool) as G2L_AddLoginRecord;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public string Account { get; set; }
+
+        [MemoryPackOrder(1)]
+        public int ServerId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Account = default;
+            this.ServerId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.L2G_AddLoginRecord)]
+    public partial class L2G_AddLoginRecord : MessageObject, IResponse
+    {
+        public static L2G_AddLoginRecord Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(L2G_AddLoginRecord), isFromPool) as L2G_AddLoginRecord;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.G2M_RequestEnterGameState)]
+    [ResponseType(nameof(M2G_RequestEnterGameState))]
+    public partial class G2M_RequestEnterGameState : MessageObject, ILocationRequest
+    {
+        public static G2M_RequestEnterGameState Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(G2M_RequestEnterGameState), isFromPool) as G2M_RequestEnterGameState;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.M2G_RequestEnterGameState)]
+    public partial class M2G_RequestEnterGameState : MessageObject, ILocationResponse
+    {
+        public static M2G_RequestEnterGameState Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(M2G_RequestEnterGameState), isFromPool) as M2G_RequestEnterGameState;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.G2Chat_EnterChat)]
+    [ResponseType(nameof(Chat2G_EnterChat))]
+    public partial class G2Chat_EnterChat : MessageObject, IRequest
+    {
+        public static G2Chat_EnterChat Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(G2Chat_EnterChat), isFromPool) as G2Chat_EnterChat;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public string Name { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long UnitId { get; set; }
+
+        [MemoryPackOrder(2)]
+        public ActorId PlayerSessionComponentActorId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Name = default;
+            this.UnitId = default;
+            this.PlayerSessionComponentActorId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.Chat2G_EnterChat)]
+    public partial class Chat2G_EnterChat : MessageObject, IResponse
+    {
+        public static Chat2G_EnterChat Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Chat2G_EnterChat), isFromPool) as Chat2G_EnterChat;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(0)]
+        public ActorId ChatInfoUnitActorId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public long ChatInfoUnitInstanceID { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.ChatInfoUnitActorId = default;
+            this.ChatInfoUnitInstanceID = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.G2Chat_RequestExitChat)]
+    [ResponseType(nameof(Chat2G_RequestExitChat))]
+    public partial class G2Chat_RequestExitChat : MessageObject, IRequest
+    {
+        public static G2Chat_RequestExitChat Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(G2Chat_RequestExitChat), isFromPool) as G2Chat_RequestExitChat;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.Chat2G_RequestExitChat)]
+    public partial class Chat2G_RequestExitChat : MessageObject, IResponse
+    {
+        public static Chat2G_RequestExitChat Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Chat2G_RequestExitChat), isFromPool) as Chat2G_RequestExitChat;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    // ----------玩家缓存相关----------------
+    // 增加或者更新Unit缓存
+    [MemoryPackable]
+    [Message(InnerMessage.Other2UnitCache_AddOrUpdateUnit)]
+    [ResponseType(nameof(UnitCache2Other_AddOrUpdateUnit))]
+    public partial class Other2UnitCache_AddOrUpdateUnit : MessageObject, IRequest
+    {
+        public static Other2UnitCache_AddOrUpdateUnit Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Other2UnitCache_AddOrUpdateUnit), isFromPool) as Other2UnitCache_AddOrUpdateUnit;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        /// <summary>
+        /// 需要缓存的UnitId
+        /// </summary>
+        [MemoryPackOrder(0)]
+        public long UnitId { get; set; }
+
+        /// <summary>
+        /// 实体类型
+        /// </summary>
+        [MemoryPackOrder(1)]
+        public List<string> EntityTypes { get; set; } = new();
+
+        /// <summary>
+        /// 实体序列化后的bytes
+        /// </summary>
+        [MemoryPackOrder(2)]
+        public List<byte[]> EntityBytes { get; set; } = new();
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.UnitId = default;
+            this.EntityTypes.Clear();
+            this.EntityBytes.Clear();
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.UnitCache2Other_AddOrUpdateUnit)]
+    public partial class UnitCache2Other_AddOrUpdateUnit : MessageObject, IResponse
+    {
+        public static UnitCache2Other_AddOrUpdateUnit Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(UnitCache2Other_AddOrUpdateUnit), isFromPool) as UnitCache2Other_AddOrUpdateUnit;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    // 获取Unit缓存
+    [MemoryPackable]
+    [Message(InnerMessage.Other2UnitCache_GetUnit)]
+    [ResponseType(nameof(UnitCache2Other_GetUnit))]
+    public partial class Other2UnitCache_GetUnit : MessageObject, IRequest
+    {
+        public static Other2UnitCache_GetUnit Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Other2UnitCache_GetUnit), isFromPool) as Other2UnitCache_GetUnit;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long UnitId { get; set; }
+
+        /// <summary>
+        /// 需要获取的组件名
+        /// </summary>
+        [MemoryPackOrder(1)]
+        public List<string> ComponentNameList { get; set; } = new();
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.UnitId = default;
+            this.ComponentNameList.Clear();
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.UnitCache2Other_GetUnit)]
+    public partial class UnitCache2Other_GetUnit : MessageObject, IResponse
+    {
+        public static UnitCache2Other_GetUnit Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(UnitCache2Other_GetUnit), isFromPool) as UnitCache2Other_GetUnit;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
+        public string Message { get; set; }
+
+        [MemoryPackOrder(3)]
+        public List<Entity> EntityList { get; set; } = new();
+
+        [MemoryPackOrder(4)]
+        public List<string> ComponentNameList { get; set; } = new();
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.Error = default;
+            this.Message = default;
+            this.EntityList.Clear();
+            this.ComponentNameList.Clear();
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    // 删除Unit缓存
+    [MemoryPackable]
+    [Message(InnerMessage.Other2UnitCache_DeleteUnit)]
+    [ResponseType(nameof(UnitCache2Other_DeleteUnit))]
+    public partial class Other2UnitCache_DeleteUnit : MessageObject, IRequest
+    {
+        public static Other2UnitCache_DeleteUnit Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Other2UnitCache_DeleteUnit), isFromPool) as Other2UnitCache_DeleteUnit;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long UnitId { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.UnitId = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
+    [MemoryPackable]
+    [Message(InnerMessage.UnitCache2Other_DeleteUnit)]
+    public partial class UnitCache2Other_DeleteUnit : MessageObject, IResponse
+    {
+        public static UnitCache2Other_DeleteUnit Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(UnitCache2Other_DeleteUnit), isFromPool) as UnitCache2Other_DeleteUnit;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(90)]
+        public int Error { get; set; }
+
+        [MemoryPackOrder(91)]
         public string Message { get; set; }
 
         public override void Dispose()
@@ -952,5 +1441,19 @@ namespace ET
         public const ushort L2A_LoginAccountResponse = 20026;
         public const ushort L2G_DisconnectGateRequest = 20027;
         public const ushort G2L_DisconnectGateResponse = 20028;
+        public const ushort G2L_AddLoginRecord = 20029;
+        public const ushort L2G_AddLoginRecord = 20030;
+        public const ushort G2M_RequestEnterGameState = 20031;
+        public const ushort M2G_RequestEnterGameState = 20032;
+        public const ushort G2Chat_EnterChat = 20033;
+        public const ushort Chat2G_EnterChat = 20034;
+        public const ushort G2Chat_RequestExitChat = 20035;
+        public const ushort Chat2G_RequestExitChat = 20036;
+        public const ushort Other2UnitCache_AddOrUpdateUnit = 20037;
+        public const ushort UnitCache2Other_AddOrUpdateUnit = 20038;
+        public const ushort Other2UnitCache_GetUnit = 20039;
+        public const ushort UnitCache2Other_GetUnit = 20040;
+        public const ushort Other2UnitCache_DeleteUnit = 20041;
+        public const ushort UnitCache2Other_DeleteUnit = 20042;
     }
 }

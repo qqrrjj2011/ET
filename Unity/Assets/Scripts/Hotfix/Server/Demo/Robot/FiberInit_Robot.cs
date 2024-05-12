@@ -16,7 +16,7 @@
             
             root.SceneType = SceneType.Demo;
 
-            await EventSystem.Instance.PublishAsync(root, new AppStartInitFinish());
+            await EventSystem.Instance.PublishAsync(root, new EventType.AppStartInitFinish());
             
             await LoginHelper.Login(root, root.Name, "");
             

@@ -5,7 +5,7 @@
 	{
 		private EntityRef<Session> session;
 
-		public Session Session
+		public Session gateSession
 		{
 			get
 			{

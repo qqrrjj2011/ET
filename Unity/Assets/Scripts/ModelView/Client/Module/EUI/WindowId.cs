@@ -11,5 +11,11 @@ namespace ET.Client
         
         WindowID_Server,
     	WindowID_Role,
+		WindowID_Bag,
+		WindowID_Chat,
+		WindowID_ItemPopUp,
+		WindowID_Rank,
+		WindowID_Task,
+		WindowID_Main,
 	}
 }

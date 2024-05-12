@@ -1,26 +1,26 @@
 ﻿namespace ET.Server
 {
-    [FriendOf(typeof(RoleInfo))]
+    [FriendOf(typeof(ServerRoleInfo))]
     public static class RoleInfoSystem
     {
-        public static void FromMessage(this RoleInfo self, RoleInfoProto roleInfoProto)
+        public static void FromMessage(this ServerRoleInfo self, RoleInfoProto roleInfoProto)
         {
-           // self.Id = roleInfoProto.Id;
+            //self.Id = roleInfoProto.Id;
             self.Name = roleInfoProto.Name;
             self.State = roleInfoProto.State;
-            self.AccountId = roleInfoProto.AccountId;
+            self.Account = roleInfoProto.Account;
             self.CreateTime = roleInfoProto.CreateTime;
             self.ServerId = roleInfoProto.ServerId;
             self.LastLoginTime = roleInfoProto.LastLoginTime;
         }
 
-        public static RoleInfoProto ToMessage(this RoleInfo self)
+        public static RoleInfoProto ToMessage(this ServerRoleInfo self)
         {
             RoleInfoProto infoProto = RoleInfoProto.Create();
             infoProto.Id = self.Id;
             infoProto.Name = self.Name;
             infoProto.State = self.State;
-            infoProto.AccountId = self.AccountId;
+            infoProto.Account = self.Account;
             infoProto.CreateTime = self.CreateTime;
             infoProto.ServerId = self.ServerId;
             infoProto.LastLoginTime = self.LastLoginTime;

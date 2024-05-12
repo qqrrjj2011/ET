@@ -3,7 +3,7 @@ using NativeCollection;
 
 namespace ET.Server
 {
-    [FriendOf(typeof(Account))]
+    [FriendOf(typeof(AccountInfo))]
     [MessageSessionHandler(SceneType.Realm)]
     public class C2R_LoginAccountHandler:MessageSessionHandler<C2A_LoginAccount,A2C_LoginAccount>
     {
@@ -56,70 +56,72 @@ namespace ET.Server
                 using (await coroutineLockComponent.Wait(CoroutineLockType.LoginAccount, request.Account.GetHashCode()))
                 {
                     DBComponent dbComponent = session.Root().GetComponent<DBManagerComponent>().GetZoneDB(session.Zone());
-                    var accounts = await dbComponent.Query<Account>(x => x.AccountName.Equals(request.Account));
-                    Account account = null;
+                    var accounts = await dbComponent.Query<AccountInfo>(x => x.Account.Equals(request.Account));
+                    AccountInfo accountInfo = null;
                     if (accounts != null && accounts.Count > 0)
                     {
-                        account = accounts[0];
+                        accountInfo = accounts[0];
                         // 安全起见，加入session
-                        session.AddChild(account);
+                        session.AddChild(accountInfo);
 
-                        if (account.AccountType == (int)AccountType.Black)
+                        if (accountInfo.AccountType == (int)AccountType.Black)
                         {
                             response.Error = ErrorCode.ERR_BlackAccount;
                             session.Disconnect().Coroutine();
-                            account.Dispose();
+                            accountInfo.Dispose();
                             return;
                         }
 
-                        if (!account.PassWord.Equals(request.Password))
+                        if (!accountInfo.PassWord.Equals(request.Password))
                         {
                             response.Error = ErrorCode.ERR_PassWordFormError;
                             session.Disconnect().Coroutine();
-                            account.Dispose();
+                            accountInfo.Dispose();
                             return;
                         }
                     }
                     // 创建新账户
                     else
                     {
-                        account = session.AddChild<Account>();
-                        account.PassWord = request.Password;
-                        account.AccountName = request.Account;
-                        account.AccountType = (int)AccountType.General;
-                        account.CreateTime = TimeInfo.Instance.ServerNow();
-                        await dbComponent.Save<Account>(account);
+                        accountInfo = session.AddChild<AccountInfo>();
+                        accountInfo.PassWord = request.Password;
+                        accountInfo.Account = request.Account;
+                        accountInfo.AccountType = (int)AccountType.General;
+                        accountInfo.CreateTime = TimeInfo.Instance.ServerNow();
+                        await dbComponent.Save<AccountInfo>(accountInfo);
                     }
                     
                     StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.Zone(), "LoginCenter");
                     A2L_LoginAccountRequest a2LLoginAccountRequest = A2L_LoginAccountRequest.Create();
-                    a2LLoginAccountRequest.AccountId = account.Id;
+                    a2LLoginAccountRequest.Account = accountInfo.Account;
                     var loginAccountResponse  = (L2A_LoginAccountResponse) await session.Root().GetComponent<MessageSender>().Call(startSceneConfig.ActorId,a2LLoginAccountRequest);
                     if (loginAccountResponse.Error != ErrorCode.ERR_Success)
                     {
                         response.Error = loginAccountResponse.Error;
                         session?.Disconnect().Coroutine();
-                        account?.Dispose();
+                        accountInfo?.Dispose();
                         return; 
                     }
                     
-                    Session otherSession = session.Root().GetComponent<AccountSessionsComponent>().Get(account.Id);
+                    Session otherSession = session.Root().GetComponent<AccountSessionsComponent>().Get(accountInfo.Account);
                     A2C_Disconnect a2CDisconnect = A2C_Disconnect.Create();
                     a2CDisconnect.Error = 0;
                     otherSession?.Send(a2CDisconnect);
                     otherSession?.Disconnect().Coroutine();
                     
-                    session.Root().GetComponent<AccountSessionsComponent>().Add(account.Id,session);
-                    session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);
+                    session.Root().GetComponent<AccountSessionsComponent>().Add(accountInfo.Account,session);
+                    session.AddComponent<AccountCheckOutTimeComponent, string>(accountInfo.Account);
                     
                     string Token = TimeInfo.Instance.ServerNow().ToString() + RandomGenerator.RandomNumber(int.MinValue, int.MaxValue);
-                    session.Root().GetComponent<TokenComponent>().Remove(account.Id);
-                    session.Root().GetComponent<TokenComponent>().Add(account.Id,Token);
+                    session.Root().GetComponent<TokenComponent>().Remove(accountInfo.Account);
+                    session.Root().GetComponent<TokenComponent>().Add(accountInfo.Account,Token);
                     
-                    response.AccountId = account.Id;
+                  //  response.AccountId = accountInfo.Id;
                     response.Token     = Token;
+
+                  //  Log(">>>>>>>>>AccountID:"+accountInfo.Id);
                     
-                    account?.Dispose();
+                    accountInfo?.Dispose();
                     
                     
                 }

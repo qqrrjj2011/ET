@@ -5,20 +5,18 @@ namespace ET.Server
     {
         protected override async ETTask Run(Scene scene, A2L_LoginAccountRequest request, L2A_LoginAccountResponse response)
         {
-            long accountId = request.AccountId;
-
-            using (await scene.GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.LoginCenterLock,accountId.GetHashCode()))
+            using (await scene.GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.LoginCenterLock,request.Account.GetHashCode()))
             {
-                if (!scene.GetComponent<LoginInfoRecordComponent>().IsExist(accountId))
+                if (!scene.GetComponent<LoginInfoRecordComponent>().IsExist(request.Account))
                 {
                     return;
                 }
 
-                int zone = scene.GetComponent<LoginInfoRecordComponent>().Get(accountId);
-                StartSceneConfig gateConfig = RealmGateAddressHelper.GetGate(zone,accountId.ToString());
+                int zone = scene.GetComponent<LoginInfoRecordComponent>().Get(request.Account);
+                StartSceneConfig gateConfig = RealmGateAddressHelper.GetGate(zone,request.Account);
                 
                 L2G_DisconnectGateRequest l2GDisconnectGateRequest = L2G_DisconnectGateRequest.Create();
-                l2GDisconnectGateRequest.AccountId = accountId;
+                l2GDisconnectGateRequest.Account = request.Account;
                 var g2LDisconnectGateResponse = (G2L_DisconnectGateResponse) await scene.GetComponent<MessageSender>().Call(gateConfig.ActorId, l2GDisconnectGateRequest);
 
                 response.Error = g2LDisconnectGateResponse.Error;

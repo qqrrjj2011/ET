@@ -27,7 +27,7 @@ namespace ET.Server
                 return;
             }
             long instanceId = player.InstanceId;
-            using (await player.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.LoginGate, player.AccountId.GetHashCode()))
+            using (await player.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.LoginGate, player.Account.GetHashCode()))
             {
                 if (player.IsDisposed || instanceId != player.InstanceId)
                 {

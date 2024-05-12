@@ -143,7 +143,7 @@ message G2R_GetLoginKey // IResponse
 	int32 RpcId = 1;
 	int32 Error = 2;
 	string Message = 3;
-	int64 Key = 4;
+	string GateToken = 4;
 	int64 GateId = 5;
 }
 
@@ -180,7 +180,7 @@ message M2M_UnitTransferResponse // IResponse
 message A2L_LoginAccountRequest // IRequest
 {
 	int32 RpcId = 1;
-	int64 AccountId = 2;
+	string Account = 2;
 }
 
 message L2A_LoginAccountResponse // IResponse
@@ -195,7 +195,7 @@ message L2A_LoginAccountResponse // IResponse
 message L2G_DisconnectGateRequest // IRequest
 {
 	int32 RpcId = 1;
-	int64 AccountId = 2;
+	string Account = 2;
 }
 
 message G2L_DisconnectGateResponse // IResponse
@@ -204,3 +204,128 @@ message G2L_DisconnectGateResponse // IResponse
 	int32 Error = 2;
 	string Message = 3;
 }
+
+//ResponseType L2G_AddLoginRecord
+message G2L_AddLoginRecord // IRequest
+{
+	int32 RpcId       = 90;
+	string Account  = 1;
+	int32 ServerId = 2;
+}
+
+message L2G_AddLoginRecord // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+//ResponseType M2G_RequestEnterGameState
+message G2M_RequestEnterGameState // ILocationRequest
+{
+	int32 RpcId = 90;
+}
+
+
+message M2G_RequestEnterGameState // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType Chat2G_EnterChat
+message G2Chat_EnterChat // IRequest
+{
+	int32 RpcId = 90;
+	string Name  = 1;
+	int64 UnitId = 2;
+	ActorId PlayerSessionComponentActorId = 3;
+  
+}
+
+
+message Chat2G_EnterChat // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	ActorId ChatInfoUnitActorId = 1;
+	int64 ChatInfoUnitInstanceID = 2;
+}
+
+
+//ResponseType Chat2G_RequestExitChat
+message G2Chat_RequestExitChat // IRequest
+{
+	int32 RpcId = 90;
+}
+
+
+message Chat2G_RequestExitChat // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//----------玩家缓存相关----------------
+
+//增加或者更新Unit缓存
+//ResponseType UnitCache2Other_AddOrUpdateUnit
+message Other2UnitCache_AddOrUpdateUnit //IRequest
+{
+	int32 RpcId = 90;
+
+	int64 UnitId = 1;				  // 需要缓存的UnitId
+	repeated string EntityTypes = 2;  //实体类型
+	repeated bytes EntityBytes = 3;   //实体序列化后的bytes
+}
+
+message UnitCache2Other_AddOrUpdateUnit //IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//获取Unit缓存
+//ResponseType UnitCache2Other_GetUnit
+message Other2UnitCache_GetUnit //IRequest
+{
+	int32 RpcId = 90;
+
+	int64 UnitId = 1;
+	repeated string ComponentNameList = 2; //需要获取的组件名
+}
+
+
+
+message UnitCache2Other_GetUnit //IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	repeated Entity EntityList = 4;
+	repeated string ComponentNameList = 5;
+}
+
+
+//删除Unit缓存
+//ResponseType UnitCache2Other_DeleteUnit
+message Other2UnitCache_DeleteUnit // IRequest
+{
+	int32 RpcId = 90;
+
+	int64 UnitId = 1;
+}
+
+message UnitCache2Other_DeleteUnit // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+

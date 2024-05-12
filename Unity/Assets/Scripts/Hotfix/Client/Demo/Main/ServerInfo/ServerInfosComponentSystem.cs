@@ -7,7 +7,8 @@
         {
             foreach (ServerInfo serverInfo in self.ServerInfoList)
             {
-                serverInfo.Dispose();
+                 if(serverInfo != null && !serverInfo.IsDisposed)   
+                    serverInfo.Dispose();
             }
 
             self.ServerInfoList.Clear();

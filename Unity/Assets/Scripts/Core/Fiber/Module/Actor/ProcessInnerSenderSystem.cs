@@ -49,7 +49,7 @@ namespace ET
             MailBoxComponent mailBoxComponent = self.Fiber().Mailboxes.Get(actorId.InstanceId);
             if (mailBoxComponent == null)
             {
-                Log.Warning($"actor not found mailbox, from: {actorId} current: {fiber.Address} {message}");
+                Log.Warning($"actor not found mailbox, from: {actorId} current: {fiber.Address} ： {message}  actorId.InstanceId：{actorId.InstanceId}");
                 if (message is IRequest request)
                 {
                     IResponse resp = MessageHelper.CreateResponse(request.GetType(), request.RpcId, ErrorCore.ERR_NotFoundActor);

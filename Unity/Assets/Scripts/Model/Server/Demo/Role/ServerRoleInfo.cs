@@ -6,9 +6,8 @@
         Freeze,
     }
     
-    //[ComponentOf]
     [ChildOf(typeof(RoleInfosZone))]
-    public class RoleInfo : Entity,IAwake,ITransfer,IUnitCache
+    public class ServerRoleInfo : Entity,IAwake
     {
         public string Name;
 
@@ -16,7 +15,7 @@
 
         public int State;
 
-        public long AccountId;
+        public string Account;
 
         public long LastLoginTime;
 

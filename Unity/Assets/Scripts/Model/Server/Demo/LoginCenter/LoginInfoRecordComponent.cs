@@ -6,9 +6,9 @@ namespace ET.Server
     public class LoginInfoRecordComponent:Entity,IAwake,IDestroy
     {
         /// <summary>
-        /// accountId-serverID(zone)
+        /// account-serverID(zone)
         /// </summary>
-        public Dictionary<long, int> AccountLoginInfoDict = new Dictionary<long, int>();
+        public Dictionary<string, int> AccountLoginInfoDict = new Dictionary<string, int>();
     }
 }
 

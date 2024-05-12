@@ -2,7 +2,7 @@
 
 namespace ET.Server
 {
-    [FriendOf(typeof(RoleInfo))]
+    [FriendOf(typeof(ServerRoleInfo))]
     [MessageSessionHandler(SceneType.Realm)]
     public class C2A_DeleteRoleHandler : MessageSessionHandler<C2A_DeleteRole,A2C_DeleteRole>
     {
@@ -23,7 +23,7 @@ namespace ET.Server
                 return;
             }
             
-            string token = session.Root().GetComponent<TokenComponent>().Get(request.AccountId);
+            string token = session.Root().GetComponent<TokenComponent>().Get(request.Account);
 
             if (token == null || token != request.Token)
             {
@@ -35,10 +35,10 @@ namespace ET.Server
 
             using (session.AddComponent<SessionLockingComponent>())
             {
-                using (await session.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.CreateRole, request.AccountId))
+                using (await session.Root().GetComponent<CoroutineLockComponent>().Wait(CoroutineLockType.CreateRole, request.Account.GetHashCode()))
                 {
                     var roleInfos = await session.Root().GetComponent<DBManagerComponent>().GetZoneDB(request.ServerId)
-                            .Query<RoleInfo>(d => d.Id == request.RoleInfoId && d.ServerId == request.ServerId);
+                            .Query<ServerRoleInfo>(d => d.Id == request.RoleId && d.ServerId == request.ServerId);
 
                     if (roleInfos == null || roleInfos.Count <= 0)
                     {
@@ -49,11 +49,10 @@ namespace ET.Server
 
                     var roleInfo = roleInfos[0];
                     session.GetComponent<RoleInfosZone>().AddChild(roleInfo);
-
                     roleInfo.State = (int)RoleInfoState.Freeze;
-
+                    
                     await session.Root().GetComponent<DBManagerComponent>().GetZoneDB(request.ServerId).Save(roleInfo);
-                    response.DeletedRoleInfoId = roleInfo.Id;
+                    response.DeletedRoleId = roleInfo.Id;
                     roleInfo?.Dispose();
 
                  //   reply();

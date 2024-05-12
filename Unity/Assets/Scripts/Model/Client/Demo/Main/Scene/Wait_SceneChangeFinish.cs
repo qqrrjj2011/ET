@@ -1,11 +1,14 @@
 ﻿namespace ET.Client
 {
-    public struct Wait_SceneChangeFinish: IWaitType
+    namespace WaitType
     {
-        public int Error
+        public struct Wait_SceneChangeFinish : IWaitType
         {
-            get;
-            set;
+            public int Error
+            {
+                get;
+                set;
+            }
         }
     }
 }

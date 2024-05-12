@@ -26,6 +26,9 @@ namespace ET
 		Watcher = 1 << 19,
 		LoginCenter = 1 << 20,
 		Account = 1 << 21,
+		UnitCache = 1 << 22,
+		Rank = 1 << 23,
+		ChatInfo = 1 << 24,
 
 		// 客户端
 		Demo = 1 << 30,
@@ -36,6 +39,7 @@ namespace ET
 		NetClient = 1L << 35,
 
 		All = long.MaxValue,
+		
 	}
 
 	public static class SceneTypeHelper

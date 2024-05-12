@@ -2,7 +2,6 @@ namespace ET
 {
     public static partial class ErrorCode
     {
-
         public const int ERR_Success = 0;
 
         // 1-11004 是SocketError请看SocketError定义
@@ -69,7 +68,51 @@ namespace ET
         /// 查询不到角色
         /// </summary>
         public const int ERR_RoleNotExist          = 200011;
+        
+        /// <summary>
+        /// 重复请求
+        /// </summary>
+        public const int ERR_RequestRepeatedly     = 200012;
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int ERR_SessionPlayerError    = 200013;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int ERR_NonePlayerError       = 200014;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int ERR_PlayerSessionError    = 200015;
+        
+        /// <summary>
+        /// session状态错误
+        /// </summary>
+        public const int ERR_SessionStateError     = 200016;
+        /// <summary>
+        /// 二次登录失败
+        /// </summary>
+        public const int ERR_ReEnterGameError      = 200017;
+        public const int ERR_ReEnterGameError2     = 200018;
+
+        /// <summary>
+        /// 进入游戏失败
+        /// </summary>
+        public const int ERR_EnterGameError        = 200019;
+
+        /// <summary>
+        /// 同服务器角色名称重复
+        /// </summary>
+        public const int ERR_RoleNameRepeat         = 200020;
+        
+        /// <summary>
+        /// 空消息
+        /// </summary>
+        public const int ERR_ChatMessageEmpty       = 200021;   
 
     }
 }

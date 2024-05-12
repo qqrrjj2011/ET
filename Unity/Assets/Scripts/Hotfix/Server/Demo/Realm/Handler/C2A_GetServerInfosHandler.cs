@@ -8,7 +8,7 @@ namespace ET.Server
     {
         protected override async ETTask Run(Session session, C2A_GetServerInfos request, A2C_GetServerInfos response)
         {
-            string curToken = session.Root().GetComponent<TokenComponent>().Get(request.AccountId);
+            string curToken = session.Root().GetComponent<TokenComponent>().Get(request.Account);
             if (!curToken.Equals(request.Token))
             {
                 response.Error = ErrorCode.ERR_TokenError;

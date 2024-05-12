@@ -3,7 +3,8 @@
 namespace ET.Server
 {
     //[ComponentOf(typeof(Scene))]
-    [ChildOf(typeof(UnitCache))]
+    //[ChildOf(typeof(UnitCache))]
+    [ComponentOf]
     public class UnitCacheComponent : Entity,IAwake,IDestroy
     {
         public Dictionary<string, EntityRef<UnitCache>> UnitCaches = new Dictionary<string, EntityRef<UnitCache>>();
