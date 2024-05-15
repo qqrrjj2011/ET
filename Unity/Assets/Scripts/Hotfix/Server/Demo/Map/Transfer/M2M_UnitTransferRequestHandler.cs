@@ -53,6 +53,9 @@ namespace ET.Server
 
             // 加入aoi
             unit.AddComponent<AOIEntity, int, float3>(9 * 1000, unit.Position);
+            
+            // 添加排行榜测试数据
+            RankHelper.AddOrUpdateLevelRank(unit);
 
             // 解锁location，可以接收发给Unit的消息
             await scene.Root().GetComponent<LocationProxyComponent>().UnLock(LocationType.Unit, unit.Id, request.OldActorId, unit.GetActorId());

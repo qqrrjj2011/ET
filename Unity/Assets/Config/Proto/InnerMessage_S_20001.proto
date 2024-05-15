@@ -329,3 +329,13 @@ message UnitCache2Other_DeleteUnit // IResponse
 	string Message = 92;
 }
 
+
+message Map2Rank_AddOrUpdateRankInfo //IMessage
+{
+	int32 RpcId = 90;
+	int64 unitId    = 1;
+	string roleName = 2;
+	int32  count    = 3;
+}
+
+

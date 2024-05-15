@@ -26,8 +26,6 @@ namespace ET.Server
                 chat2CNoticeChatInfo.Name = chatInfoUnit.Name;
                 chat2CNoticeChatInfo.ChatMessage = request.ChatMessage;
              //   chatInfoUnit.Root().GetComponent<MessageLocationSenderComponent>().Get(LocationType.GateSession).Send(ent.Id, chat2CNoticeChatInfo);
-               // chatInfoUnit.Root().GetComponent<MessageLocationSenderComponent>().Get(LocationType.GateSession).Send(ent.Id, chat2CNoticeChatInfo);
-               // chatInfoUnit.Root().GetComponent<MessageLocationSenderComponent>().Get(LocationType.Chat).Send(ent.Id, chat2CNoticeChatInfo);
                chatInfoUnit.Root().GetComponent<MessageSender>().Send(ent.PlayerSessionComponentActorId, chat2CNoticeChatInfo);
             }
 

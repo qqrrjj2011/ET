@@ -18,5 +18,6 @@
 
         public const int PlayerOfflineOutTime = 302;
         public const int AccountSessionCheckOutTime = 303;
+        public const int RankUI = 304;
     }
 }

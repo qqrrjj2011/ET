@@ -1412,6 +1412,43 @@ namespace ET
         }
     }
 
+    [MemoryPackable]
+    [Message(InnerMessage.Map2Rank_AddOrUpdateRankInfo)]
+    public partial class Map2Rank_AddOrUpdateRankInfo : MessageObject, IMessage
+    {
+        public static Map2Rank_AddOrUpdateRankInfo Create(bool isFromPool = false)
+        {
+            return ObjectPool.Instance.Fetch(typeof(Map2Rank_AddOrUpdateRankInfo), isFromPool) as Map2Rank_AddOrUpdateRankInfo;
+        }
+
+        [MemoryPackOrder(89)]
+        public int RpcId { get; set; }
+
+        [MemoryPackOrder(0)]
+        public long unitId { get; set; }
+
+        [MemoryPackOrder(1)]
+        public string roleName { get; set; }
+
+        [MemoryPackOrder(2)]
+        public int count { get; set; }
+
+        public override void Dispose()
+        {
+            if (!this.IsFromPool)
+            {
+                return;
+            }
+
+            this.RpcId = default;
+            this.unitId = default;
+            this.roleName = default;
+            this.count = default;
+
+            ObjectPool.Instance.Recycle(this);
+        }
+    }
+
     public static class InnerMessage
     {
         public const ushort ObjectQueryRequest = 20002;
@@ -1455,5 +1492,6 @@ namespace ET
         public const ushort UnitCache2Other_GetUnit = 20040;
         public const ushort Other2UnitCache_DeleteUnit = 20041;
         public const ushort UnitCache2Other_DeleteUnit = 20042;
+        public const ushort Map2Rank_AddOrUpdateRankInfo = 20043;
     }
 }

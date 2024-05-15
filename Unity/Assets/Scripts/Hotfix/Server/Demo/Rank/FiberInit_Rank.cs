@@ -16,6 +16,8 @@ namespace ET.Server
             
             root.AddComponent<DBManagerComponent>();
             
+            await root.AddComponent<RankInfosComponent>().LoadRankInfo();
+            
             StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.Get(root.Fiber.Id);
             root.AddComponent<NetComponent, IPEndPoint, NetworkProtocol>(startSceneConfig.InnerIPPort, NetworkProtocol.UDP);
 
