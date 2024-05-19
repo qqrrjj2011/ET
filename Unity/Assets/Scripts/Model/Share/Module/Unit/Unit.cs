@@ -6,7 +6,7 @@ namespace ET
 {
     [ChildOf(typeof(UnitComponent))]
     [DebuggerDisplay("ViewName,nq")]
-    public partial class Unit: Entity, IAwake<int>
+    public partial class Unit: Entity, IAwake<int>, IAddComponent,IGetComponentSys
     {
         public int ConfigId { get; set; } //配置表id
 

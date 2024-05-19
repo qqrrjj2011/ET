@@ -226,6 +226,7 @@ namespace ET.Client
                 C2R_GetGateKey c2RGetGateKey = C2R_GetGateKey.Create();
                 c2RGetGateKey.RealmTokenKey = zoneScene.GetComponent<AccountInfoComponent>().Token;
                 c2RGetGateKey.Account = zoneScene.GetComponent<AccountInfoComponent>().Account;
+                c2RGetGateKey.ServerId = zoneScene.GetComponent<ClientServerInfosComponent>().CurrentServerId;
                 r2CGetGateKey = await zoneScene.GetComponent<ClientSenderComponent>().Call(c2RGetGateKey) as R2C_GetGateKey;
             }
             catch (Exception e)

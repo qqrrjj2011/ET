@@ -35,6 +35,12 @@ namespace ET.Client
 				self.Root().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Task);
 				await ETTask.CompletedTask;
 			});
+			
+			self.View.E_ForgeButtonButton.GetComponent<Button>().AddListenerAsync( async () =>
+			{
+				self.Root().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Forge);
+				await ETTask.CompletedTask;
+			});
 		}
 
 		public static void ShowWindow(this DlgMain self, Entity contextData = null)

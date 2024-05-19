@@ -5,7 +5,7 @@
     {
         public static void FromMessage(this ServerInfo self, ServerInfoProto serverInfoProto)
         {
-            self.Status = serverInfoProto.Status;
+            self.Status = (ServerStatus)serverInfoProto.Status;
             self.ServerName = serverInfoProto.ServerName;
         }
 
@@ -13,7 +13,7 @@
         {
             ServerInfoProto serverInfoProto = ServerInfoProto.Create();
             serverInfoProto.ServerName = self.ServerName;
-            serverInfoProto.Status = self.Status;
+            serverInfoProto.Status = (int)self.Status;
             return serverInfoProto;
         }
         

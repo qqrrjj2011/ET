@@ -1,28 +1,31 @@
 ﻿namespace ET.Client
 {
+    [EntitySystemOf(typeof(ClientServerInfosComponent))]
     [FriendOf(typeof(ClientServerInfosComponent))]
-    public class ClientServerInfosComponentDestroySystem : DestroySystem<ClientServerInfosComponent>
+    public static partial class ClientServerInfosComponentSystem
     {
-        protected override void Destroy(ClientServerInfosComponent self)
+
+        public static void Add(this ClientServerInfosComponent self, ServerInfo serverInfo)
+        {
+            self.ServerInfoList.Add(serverInfo);
+        }
+        [EntitySystem]
+        private static void Awake(this ET.Client.ClientServerInfosComponent self)
+        {
+
+        }
+        [EntitySystem]
+        private static void Destroy(this ET.Client.ClientServerInfosComponent self)
         {
             foreach (ServerInfo serverInfo in self.ServerInfoList)
             {
-                 if(serverInfo != null && !serverInfo.IsDisposed)   
+                if(serverInfo != null && !serverInfo.IsDisposed)   
                     serverInfo.Dispose();
             }
 
             self.ServerInfoList.Clear();
 
             self.CurrentServerId = 0;
-        }
-    }
-    [FriendOf(typeof(ClientServerInfosComponent))]
-    public static class ClientServerInfosComponentSystem
-    {
-     
-        public static void Add(this ClientServerInfosComponent self, ServerInfo serverInfo)
-        {
-            self.ServerInfoList.Add(serverInfo);
         }
     }
 }

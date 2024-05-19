@@ -13,10 +13,21 @@ namespace ET
         {
             return UnitConfigCategory.Instance.Get(self.ConfigId);
         }
-        
+
         public static UnitType Type(this Unit self)
         {
             return (UnitType)self.Config().Type;
+        }
+        
+       // [EntitySystem]
+        private static void AddComponent(this ET.Unit self)
+        {
+        
+        }
+       // [EntitySystem]
+        private static void GetComponentSys(this ET.Unit self, System.Type args2)
+        {
+        
         }
     }
 }

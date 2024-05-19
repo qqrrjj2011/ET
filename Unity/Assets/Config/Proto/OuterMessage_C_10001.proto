@@ -437,6 +437,7 @@ message C2R_GetGateKey // ISessionRequest
 	int32 RpcId = 1;
 	string  Account = 2;  // 帐号
 	string  RealmTokenKey = 3;  // token
+	int32   ServerId = 4;
 }
 
 message R2C_GetGateKey // ISessionResponse
@@ -495,4 +496,267 @@ message Rank2C_GetRanksInfo // IActorRankInfoResponse
 	int32 Error    = 91;
 	string Message = 92;
 	repeated RankInfoProto RankInfoProtoList = 1;
+}
+
+
+
+
+
+message ItemInfo
+{
+	int64 ItemUid      = 1;
+	int32 ItemConfigId = 2;
+	int32 ItemQuality  = 3;
+
+	EquipInfoProto EquipInfo = 4;
+}
+
+
+
+message M2C_AllItemsList // IMessage
+{
+	int32 RpcId = 90;
+	repeated ItemInfo ItemInfoList = 1;
+	int32    ContainerType = 2;
+}
+
+
+
+message M2C_ItemUpdateOpInfo // IMessage
+{
+	int32 RpcId = 90;
+	ItemInfo ItemInfo = 1;
+	int32    Op       = 2;
+	int32    ContainerType = 3;
+}
+
+
+
+
+message AttributeEntryProto
+{
+	int64 Id = 1;
+	int32 Key = 2;
+	int64 Value = 3;
+	int32 EntryType = 4;
+}
+
+
+message EquipInfoProto
+{
+	int64 Id    = 1;
+	int32 Score = 2;
+	repeated AttributeEntryProto AttributeEntryProtoList = 3;
+}
+
+
+//ResponseType M2C_EquipItem
+message C2M_EquipItem // ILocationRequest
+{
+	int32 RpcId = 1;
+	int64 ItemUid = 2;
+}
+
+message M2C_EquipItem // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+//ResponseType M2C_UnloadEquipItem
+message C2M_UnloadEquipItem // ILocationRequest
+{
+	int32 RpcId = 1;
+	int32 EquipPosition = 2;
+}
+
+message M2C_UnloadEquipItem // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+//ResponseType M2C_SellItem
+message C2M_SellItem // ILocationRequest
+{
+	int32 RpcId = 1;
+	int64 ItemUid = 2;
+}
+
+message M2C_SellItem // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+
+message TaskInfoProto
+{
+	int32 ConfigId  = 1;
+
+	int32 TaskState = 2;
+
+	int32 TaskPogress = 3;
+}
+
+message M2C_UpdateTaskInfo // IMessage
+{
+	TaskInfoProto TaskInfoProto = 1;
+}
+
+
+message M2C_AllTaskInfoList // IMessage
+{
+	repeated TaskInfoProto TaskInfoProtoList = 1;
+}
+
+
+//ResponseType M2C_ReceiveTaskReward
+message C2M_ReceiveTaskReward // ILocationRequest
+{
+	int32 RpcId        = 1;
+	int32 TaskConfigId = 2;
+}
+
+message M2C_ReceiveTaskReward // ILocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+}
+
+
+
+message M2C_NoticeUnitNumeric // IMessage
+{
+	int64 UnitId = 1;
+
+	int32 NumericType = 2;
+
+	int64 NewValue = 4;
+}
+
+
+//ResponseType M2C_TestUnitNumeric
+message C2M_TestUnitNumeric // ILocationRequest
+{
+	int32 RpcId = 1;
+}
+
+message M2C_TestUnitNumeric // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+
+//ResponseType M2C_AddAttributePoint
+message C2M_AddAttributePoint // ILocationRequest
+{
+	int32 RpcId = 1;
+	int32 NumericType = 2;
+}
+
+message M2C_AddAttributePoint // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_UpRoleLevel
+message C2M_UpRoleLevel // ILocationRequest
+{
+	int32 RpcId = 1;
+}
+
+message M2C_UpRoleLevel // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_StartGameLevel
+message C2M_StartGameLevel // ILocationRequest
+{
+	int32 RpcId = 1;
+	int32 LevelId = 2;
+}
+
+message M2C_StartGameLevel // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_EndGameLevel
+message C2M_EndGameLevel // ILocationRequest
+{
+	int32 RpcId = 1;
+	int32 Round   = 2;
+	int32 BattleResult  = 3;
+}
+
+message M2C_EndGameLevel // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+
+message ProductionProto
+{
+	int64 Id           = 1;
+	int32 ConfigId     = 2;
+	int64 TargetTime   = 3;
+	int64 StartTime    = 4;
+	int32 ProductionState = 5;
+}
+
+//ResponseType M2C_StartProduction
+message C2M_StartProduction // ILocationRequest
+{
+	int32 RpcId    = 1;
+	int32 ConfigId = 2;
+}
+
+message M2C_StartProduction // ILocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	ProductionProto  ProductionProto = 2;
+}
+
+
+//ResponseType M2C_ReceiveProduction
+message C2M_ReceiveProduction // ILocationRequest
+{
+	int32 RpcId        = 1;
+	int64 ProducitonId = 2;
+}
+
+message M2C_ReceiveProduction // ILocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	ProductionProto  ProductionProto = 1;
+}
+
+message M2C_AllProductionList // IMessage
+{
+	repeated ProductionProto ProductionProtoList = 1;
 }

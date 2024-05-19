@@ -5,7 +5,7 @@ namespace ET
     {
         public static void FromMessage(this ServerInfo self, ServerInfoProto serverInfoProto)
         {
-            self.Status = serverInfoProto.Status;
+            self.Status = (ServerStatus)serverInfoProto.Status;
             self.ServerName = serverInfoProto.ServerName;
         }
 
@@ -14,7 +14,7 @@ namespace ET
             ServerInfoProto serverInfoProto = ServerInfoProto.Create();
             serverInfoProto.Id = self.Id;
             serverInfoProto.ServerName = self.ServerName;
-            serverInfoProto.Status = self.Status;
+            serverInfoProto.Status = (int)self.Status;
             return serverInfoProto;
         }
 

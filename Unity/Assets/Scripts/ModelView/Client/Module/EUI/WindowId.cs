@@ -17,5 +17,7 @@ namespace ET.Client
 		WindowID_Rank,
 		WindowID_Task,
 		WindowID_Main,
+		WindowID_RoleInfo,
+		WindowID_Forge,
 	}
 }

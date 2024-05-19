@@ -22,6 +22,12 @@ namespace ET.Client
             root.AddComponent<RoleInfosComponent>();
             root.AddComponent<ChatComponent>();
             root.AddComponent<RankComponent>();
+            root.AddComponent<TasksComponent>();
+           // root.AddComponent<AdventureComponent>();
+            root.AddComponent<BagComponent>();
+            root.AddComponent<ForgeComponent>();
+            root.AddComponent<EquipmentsComponent>();
+            
             
             
             // 根据配置修改掉Main Fiber的SceneType

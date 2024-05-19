@@ -57,7 +57,6 @@ namespace ET.Server
                         return;
                     }
 
-
                     if (player.PlayerState == PlayerState.Game)
                     {
                         try

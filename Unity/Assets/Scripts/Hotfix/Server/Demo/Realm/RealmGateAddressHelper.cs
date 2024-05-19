@@ -8,8 +8,7 @@ namespace ET.Server
 		public static StartSceneConfig GetGate(int zone, string account)
 		{
 			ulong hash = (ulong)account.GetLongHashCode();
-			int gateZone = zone % 1000 + 1;
-			List<StartSceneConfig> zoneGates = StartSceneConfigCategory.Instance.Gates[gateZone];
+			List<StartSceneConfig> zoneGates = StartSceneConfigCategory.Instance.Gates[zone];
 			
 			return zoneGates[(int)(hash % (ulong)zoneGates.Count)];
 		}

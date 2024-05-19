@@ -2,6 +2,7 @@ namespace ET
 {
     public static partial class ErrorCode
     {
+     
         public const int ERR_Success = 0;
 
         // 1-11004 是SocketError请看SocketError定义
@@ -113,6 +114,55 @@ namespace ET
         /// 空消息
         /// </summary>
         public const int ERR_ChatMessageEmpty       = 200021;   
+
+        /// <summary>
+        /// 道具不存在
+        /// </summary>
+        public const int ERR_ItemNotExist           = 200022;
+        
+        /// <summary>
+        /// 背包添加道具失败
+        /// </summary>
+        public const int ERR_AddBagItemError       = 200023;
+
+        /// <summary>
+        /// 装备道具失败
+        /// </summary>
+        public const int ERR_EquipItemError        = 200024;
+
+        /// <summary>
+        /// 背包上限
+        /// </summary>
+        public const int ERR_BagMaxLoad            = 200025;
+
+        /// <summary>
+        /// 任务不存在
+        /// </summary>
+        public const int ERR_NoTaskExist           = 200026;
+        
+        public const int ERR_NoTaskInfoExist      = 200027;
+        public const int ERR_BeforeTaskNoOver     = 200028;
+        public const int ERR_TaskRewarded         = 200029;
+        public const int ERR_TaskNoCompleted      = 200030;
+        
+        public const int ERR_NumericTypeNotExist    = 200031;
+        public const int ERR_NumericTypeNotAddPoint = 200032;
+        public const int ERR_AddPointNotEnough      = 200033;
+        public const int ERR_ExpNotEnough           = 200034;
+        public const int ERR_ExpNumError            = 200035;
+        public const int ERR_NoMakeQueueOver        = 200036;
+        public const int ERR_MakeConfigNotExist     = 200037;
+        public const int ERR_NoMakeFreeQueue        = 200038;
+        public const int ERR_MakeConsumeError       = 200039;
+        public const int ERR_AdventureLevelIdError      = 200040;
+        public const int ERR_AdventureRoundError        = 200041;
+        public const int ERR_AdventureResultError       = 200042;
+        public const int ERR_AdventureWinResultError    = 200043;
+        
+        public const int ERR_AlreadyAdventureState      = 200044;
+        public const int ERR_AdventureInDying           = 200045;
+        public const int ERR_AdventureErrorLevel        = 200046;
+        public const int ERR_AdventureLevelNotEnough    = 200047;
 
     }
 }

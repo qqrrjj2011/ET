@@ -602,10 +602,9 @@ namespace ET
                 return;
             }
 
-            Type type = typeof (K);
             
-            Entity c;
-            if (!this.components.TryGetValue(this.GetLongHashCode(type), out c))
+            Entity c = this.GetComponent<K>();
+            if (c == null)
             {
                 return;
             }
@@ -626,8 +625,8 @@ namespace ET
                 return;
             }
 
-            Entity c;
-            if (!this.components.TryGetValue(this.GetLongHashCode(component.GetType()), out c))
+            Entity c = GetComponent(component.GetType());
+            if (c == null)
             {
                 return;
             }
@@ -648,8 +647,8 @@ namespace ET
                 return;
             }
 
-            Entity c;
-            if (!this.components.TryGetValue(this.GetLongHashCode(type), out c))
+            Entity c = this.GetComponent(type);
+            if (c == null)
             {
                 return;
             }
@@ -731,6 +730,11 @@ namespace ET
             }
 
             component.ComponentParent = this;
+            
+            if (this is IAddComponent)
+            {
+                EntitySystemSingleton.Instance.AddComponent(this, component);
+            }
 
             return component;
         }
@@ -748,6 +752,10 @@ namespace ET
             EntitySystemSingleton entitySystemSingleton = EntitySystemSingleton.Instance;
             entitySystemSingleton.Awake(component);
 
+            if (this is IAddComponent)
+            {
+                EntitySystemSingleton.Instance.AddComponent(this, component);
+            }
             return component;
         }
 
@@ -764,6 +772,11 @@ namespace ET
             component.ComponentParent = this;
             EntitySystemSingleton entitySystemSingleton = EntitySystemSingleton.Instance;
             entitySystemSingleton.Awake(component);
+            
+            if (this is IAddComponent)
+            {
+                EntitySystemSingleton.Instance.AddComponent(this, component);
+            }
 
             return component as K;
         }
@@ -781,6 +794,11 @@ namespace ET
             component.ComponentParent = this;
             EntitySystemSingleton entitySystemSingleton = EntitySystemSingleton.Instance;
             entitySystemSingleton.Awake(component, p1);
+            
+            if (this is IAddComponent)
+            {
+                EntitySystemSingleton.Instance.AddComponent(this, component);
+            }
 
             return component as K;
         }
@@ -798,6 +816,11 @@ namespace ET
             component.ComponentParent = this;
             EntitySystemSingleton entitySystemSingleton = EntitySystemSingleton.Instance;
             entitySystemSingleton.Awake(component, p1, p2);
+            
+            if (this is IAddComponent)
+            {
+                EntitySystemSingleton.Instance.AddComponent(this, component);
+            }
 
             return component as K;
         }
@@ -815,6 +838,11 @@ namespace ET
             component.ComponentParent = this;
             EntitySystemSingleton entitySystemSingleton = EntitySystemSingleton.Instance;
             entitySystemSingleton.Awake(component, p1, p2, p3);
+            
+            if (this is IAddComponent)
+            {
+                EntitySystemSingleton.Instance.AddComponent(this, component);
+            }
 
             return component as K;
         }

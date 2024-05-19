@@ -20,6 +20,30 @@ namespace ET.Server
                     numericComponent.Set(NumericType.Speed, 6f); // 速度是6米每秒
                     numericComponent.Set(NumericType.AOI, 15000); // 视野15米
                     
+                    foreach (var config in PlayerNumericConfigCategory.Instance.GetAll())
+                    {
+                        if ( config.Value.BaseValue == 0 )
+                        {
+                            continue;
+                        }
+
+                        if ( config.Key < 3000 ) //小于3000的值都用加成属性推导
+                        {
+                            int baseKey = config.Key * 10 + 1;
+                            numericComponent.SetNoEvent(baseKey,config.Value.BaseValue);
+                        }
+                        else
+                        {
+                            //大于3000的值 直接使用
+                            numericComponent.SetNoEvent(config.Key,config.Value.BaseValue);
+                        }
+                    }
+                    
+                    unit.AddComponent<ServerBagComponent>();
+                    unit.AddComponent<EquipmentsComponent>();
+                    unit.AddComponent<ForgeComponent>();
+                    unit.AddComponent<ServerTasksComponent>();
+                    
                     unitComponent.Add(unit);
                     // 加入aoi
                     unit.AddComponent<AOIEntity, int, float3>(9 * 1000, unit.Position);
@@ -28,6 +52,21 @@ namespace ET.Server
                 default:
                     throw new Exception($"not such unit type: {unitType}");
             }
+        }
+        
+        public static Unit CreateMonster(Scene scene, int configId)
+        {
+            UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
+            Unit unit = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), configId);
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            
+            numericComponent.SetNoEvent(NumericType.MaxHp,unit.Config().MaxHP);
+            numericComponent.SetNoEvent(NumericType.Hp,unit.Config().MaxHP);
+            numericComponent.SetNoEvent(NumericType.DamageValue,unit.Config().DamageValue);
+            numericComponent.SetNoEvent(NumericType.IsAlive,1);
+            
+            unitComponent.Add(unit);
+            return unit;
         }
     }
 }

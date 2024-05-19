@@ -19,5 +19,12 @@
         public const int PlayerOfflineOutTime = 302;
         public const int AccountSessionCheckOutTime = 303;
         public const int RankUI = 304;
+        
+        public const int SaveChangeDBData = 305;
+        public const int BattleRound = 306;
+
+        public const int MakeQueueOver = 307;
+
+        public const int MakeQueueUI = 308;
     }
 }

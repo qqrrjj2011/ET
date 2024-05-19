@@ -75,6 +75,40 @@ namespace ET.Client
      		}
      	}
 
+		public UnityEngine.UI.Button E_ForgeButtonButton
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_ForgeButtonButton == null )
+     			{
+		    		this.m_E_ForgeButtonButton = UIFindHelper.FindDeepChild<UnityEngine.UI.Button>(this.uiTransform.gameObject,"UI/Bottom/E_ForgeButton");
+     			}
+     			return this.m_E_ForgeButtonButton;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_ForgeButtonImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_ForgeButtonImage == null )
+     			{
+		    		this.m_E_ForgeButtonImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"UI/Bottom/E_ForgeButton");
+     			}
+     			return this.m_E_ForgeButtonImage;
+     		}
+     	}
+
 		public UnityEngine.UI.Button E_RankButtonButton
      	{
      		get
@@ -149,6 +183,8 @@ namespace ET.Client
 			this.m_E_BagButtonImage = null;
 			this.m_E_ChatButtonButton = null;
 			this.m_E_ChatButtonImage = null;
+			this.m_E_ForgeButtonButton = null;
+			this.m_E_ForgeButtonImage = null;
 			this.m_E_RankButtonButton = null;
 			this.m_E_RankButtonImage = null;
 			this.m_E_TaskButtonButton = null;
@@ -160,6 +196,8 @@ namespace ET.Client
 		private UnityEngine.UI.Image m_E_BagButtonImage = null;
 		private UnityEngine.UI.Button m_E_ChatButtonButton = null;
 		private UnityEngine.UI.Image m_E_ChatButtonImage = null;
+		private UnityEngine.UI.Button m_E_ForgeButtonButton = null;
+		private UnityEngine.UI.Image m_E_ForgeButtonImage = null;
 		private UnityEngine.UI.Button m_E_RankButtonButton = null;
 		private UnityEngine.UI.Image m_E_RankButtonImage = null;
 		private UnityEngine.UI.Button m_E_TaskButtonButton = null;

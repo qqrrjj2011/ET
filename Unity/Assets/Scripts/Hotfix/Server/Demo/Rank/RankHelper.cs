@@ -24,9 +24,9 @@ namespace ET.Server
             message.unitId = unit.Id;
             message.roleName   = unit.GetComponent<UnitRoleInfo>().Name;
             // 测试数据
-            int level = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Level);
-            unit.GetComponent<NumericComponent>().Set(NumericType.Level,level+1);
-            level = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Level);
+            // int level = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Level);
+            // unit.GetComponent<NumericComponent>().Set(NumericType.Level,level+1);
+            // level = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Level);
             
             message.count  = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Level);
             ActorId instanceId  = StartSceneConfigCategory.Instance.GetBySceneName(unit.Zone(), "Rank").ActorId;
