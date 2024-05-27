@@ -67,8 +67,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-		        
-     			if( this.m_es_equipitem_head.Equals(null) )
+     			ES_EquipItem ent = this.m_es_equipitem_head;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/TopBackGround/ES_EquipItem_Head");
 		    	   this.m_es_equipitem_head = this.AddChild<ES_EquipItem,Transform>(subTrans);
@@ -86,7 +86,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_equipitem_clothes.Equals(null) )
+     			ES_EquipItem ent = this.m_es_equipitem_clothes;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/TopBackGround/ES_EquipItem_Clothes");
 		    	   this.m_es_equipitem_clothes = this.AddChild<ES_EquipItem,Transform>(subTrans);
@@ -104,7 +105,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_equipitem_shoes.Equals(null) )
+     			ES_EquipItem ent = this.m_es_equipitem_shoes;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/TopBackGround/ES_EquipItem_Shoes");
 		    	   this.m_es_equipitem_shoes = this.AddChild<ES_EquipItem,Transform>(subTrans);
@@ -122,7 +124,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_equipitem_ring.Equals(null) )
+     			ES_EquipItem ent = this.m_es_equipitem_ring;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/TopBackGround/ES_EquipItem_Ring");
 		    	   this.m_es_equipitem_ring = this.AddChild<ES_EquipItem,Transform>(subTrans);
@@ -140,7 +143,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_equipitem_weapon.Equals(null) )
+     			ES_EquipItem ent = this.m_es_equipitem_weapon;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/TopBackGround/ES_EquipItem_Weapon");
 		    	   this.m_es_equipitem_weapon = this.AddChild<ES_EquipItem,Transform>(subTrans);
@@ -158,7 +162,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_equipitem_shield.Equals(null) )
+     			ES_EquipItem ent = this.m_es_equipitem_shield;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/TopBackGround/ES_EquipItem_Shield");
 		    	   this.m_es_equipitem_shield = this.AddChild<ES_EquipItem,Transform>(subTrans);
@@ -176,7 +181,7 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_E_AttributePointText.Equals(null) )
+     			if( this.m_E_AttributePointText == null )
      			{
 		    		this.m_E_AttributePointText = UIFindHelper.FindDeepChild<UnityEngine.UI.Text>(this.uiTransform.gameObject,"BackGround/AttributeBackGround/AttributeAddGroup/E_AttributePoint");
      			}
@@ -193,7 +198,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_attributeitem.Equals(null) )
+     			ES_AttributeItem ent = this.m_es_attributeitem;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/AttributeBackGround/AttributeAddGroup/ES_AttributeItem");
 		    	   this.m_es_attributeitem = this.AddChild<ES_AttributeItem,Transform>(subTrans);
@@ -211,7 +217,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_attributeitem1.Equals(null) )
+     			ES_AttributeItem ent = this.m_es_attributeitem1;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/AttributeBackGround/AttributeAddGroup/ES_AttributeItem1");
 		    	   this.m_es_attributeitem1 = this.AddChild<ES_AttributeItem,Transform>(subTrans);
@@ -229,7 +236,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_attributeitem2.Equals(null) )
+     			ES_AttributeItem ent = this.m_es_attributeitem2;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/AttributeBackGround/AttributeAddGroup/ES_AttributeItem2");
 		    	   this.m_es_attributeitem2 = this.AddChild<ES_AttributeItem,Transform>(subTrans);
@@ -247,7 +255,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_attributeitem3.Equals(null) )
+     			ES_AttributeItem ent = this.m_es_attributeitem3;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/AttributeBackGround/AttributeAddGroup/ES_AttributeItem3");
 		    	   this.m_es_attributeitem3 = this.AddChild<ES_AttributeItem,Transform>(subTrans);
@@ -265,7 +274,7 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_E_AttributesLoopVerticalScrollRect.Equals(null) )
+     			if( this.m_E_AttributesLoopVerticalScrollRect == null )
      			{
 		    		this.m_E_AttributesLoopVerticalScrollRect = UIFindHelper.FindDeepChild<UnityEngine.UI.LoopVerticalScrollRect>(this.uiTransform.gameObject,"BackGround/AttributeBackGround/AttributeInfoGroup/E_Attributes");
      			}

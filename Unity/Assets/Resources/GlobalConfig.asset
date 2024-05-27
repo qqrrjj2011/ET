@@ -16,5 +16,5 @@ MonoBehaviour:
   EnableDll: 1
   BuildType: 1
   AppType: 7
-  EPlayMode: 1
+  EPlayMode: 0
   AppRunType: 1

@@ -75,6 +75,40 @@ namespace ET.Client
      		}
      	}
 
+		public UnityEngine.UI.Button E_RoleInfoButtonButton
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_RoleInfoButtonButton == null )
+     			{
+		    		this.m_E_RoleInfoButtonButton = UIFindHelper.FindDeepChild<UnityEngine.UI.Button>(this.uiTransform.gameObject,"UI/Bottom/E_RoleInfoButton");
+     			}
+     			return this.m_E_RoleInfoButtonButton;
+     		}
+     	}
+
+		public UnityEngine.UI.Image E_RoleInfoButtonImage
+     	{
+     		get
+     		{
+     			if (this.uiTransform == null)
+     			{
+     				Log.Error("uiTransform is null.");
+     				return null;
+     			}
+     			if( this.m_E_RoleInfoButtonImage == null )
+     			{
+		    		this.m_E_RoleInfoButtonImage = UIFindHelper.FindDeepChild<UnityEngine.UI.Image>(this.uiTransform.gameObject,"UI/Bottom/E_RoleInfoButton");
+     			}
+     			return this.m_E_RoleInfoButtonImage;
+     		}
+     	}
+
 		public UnityEngine.UI.Button E_ForgeButtonButton
      	{
      		get
@@ -183,6 +217,8 @@ namespace ET.Client
 			this.m_E_BagButtonImage = null;
 			this.m_E_ChatButtonButton = null;
 			this.m_E_ChatButtonImage = null;
+			this.m_E_RoleInfoButtonButton = null;
+			this.m_E_RoleInfoButtonImage = null;
 			this.m_E_ForgeButtonButton = null;
 			this.m_E_ForgeButtonImage = null;
 			this.m_E_RankButtonButton = null;
@@ -196,6 +232,8 @@ namespace ET.Client
 		private UnityEngine.UI.Image m_E_BagButtonImage = null;
 		private UnityEngine.UI.Button m_E_ChatButtonButton = null;
 		private UnityEngine.UI.Image m_E_ChatButtonImage = null;
+		private UnityEngine.UI.Button m_E_RoleInfoButtonButton = null;
+		private UnityEngine.UI.Image m_E_RoleInfoButtonImage = null;
 		private UnityEngine.UI.Button m_E_ForgeButtonButton = null;
 		private UnityEngine.UI.Image m_E_ForgeButtonImage = null;
 		private UnityEngine.UI.Button m_E_RankButtonButton = null;

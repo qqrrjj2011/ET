@@ -1,5 +1,6 @@
 ﻿namespace ET.Client
 {
+    [FriendOf(typeof(AttributeEntry))]
     public class AttributeEntryDestorySystem: DestroySystem<AttributeEntry>
     {
         protected override void Destroy(AttributeEntry self)

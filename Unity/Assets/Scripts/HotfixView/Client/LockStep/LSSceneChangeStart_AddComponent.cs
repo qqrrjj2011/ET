@@ -18,7 +18,7 @@ namespace ET.Client
      //111       await UIHelper.Create(args.Room, UIType.UILSRoom, UILayer.Low);
             
             // 加载场景资源
-            await resourcesLoaderComponent.LoadSceneAsync($"Assets/Bundles/Scenes/{room.Name}.unity", LoadSceneMode.Single);
+            await resourcesLoaderComponent.LoadSceneAsync(PathHelper.PathScene(room.Name), LoadSceneMode.Single);
         }
     }
 }

@@ -40,16 +40,16 @@ namespace ET.Server
             MapMessageHelper.SendToClient(unit, m2CCreateUnits);
             
             //通知客户端同步背包信息
-            // ItemUpdateNoticeHelper.SyncAllBagItems(unit);
-            // ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
-            //
-            // //通知客户端同步打造信息
-            // ForgeHelper.SyncAllProduction(unit);
-			         //
-            // TaskNoticeHelper.SyncAllTaskInfo(unit);
+             ItemUpdateNoticeHelper.SyncAllBagItems(unit);
+             ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
             
-            // unit.AddComponent<NumericNoticeComponent>();
-            // unit.AddComponent<AdventureCheckComponent>();
+            // //通知客户端同步打造信息
+             ForgeHelper.SyncAllProduction(unit);
+			         //
+             TaskNoticeHelper.SyncAllTaskInfo(unit);
+            
+             unit.AddComponent<NumericNoticeComponent>();
+             unit.AddComponent<AdventureCheckComponent>();
 
             // 加入aoi
             unit.AddComponent<AOIEntity, int, float3>(9 * 1000, unit.Position);

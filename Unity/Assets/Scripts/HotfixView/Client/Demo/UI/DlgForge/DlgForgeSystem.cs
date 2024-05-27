@@ -55,6 +55,13 @@ namespace ET.Client
         public static void RefreshMakeQueue(this DlgForge self)
         {
             Production production = self.Root().GetComponent<ForgeComponent>().GetProductionByIndex(0);
+            // if (production == null)
+            // {
+            //     Log.Error(">>>>>>>>DlgForge production");
+            //     return;
+            // }
+
+            
             self.View.ES_MakeQueueOne.Refresh(production);
             
             production = self.Root().GetComponent<ForgeComponent>().GetProductionByIndex(1);

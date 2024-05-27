@@ -148,7 +148,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_equipitem.Equals(null) )
+     			ES_EquipItem ent = this.m_es_equipitem;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"ES_EquipItem");
 		    	   this.m_es_equipitem = this.AddChild<ES_EquipItem,Transform>(subTrans);

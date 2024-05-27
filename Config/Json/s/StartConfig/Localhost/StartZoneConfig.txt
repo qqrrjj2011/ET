@@ -1,6 +1,6 @@
 {"dict": [
-[1, {"_t":"StartZoneConfig","_id":1,"DBConnection":"mongodb://127.0.0.1","DBName":"ET1"}],
-[2, {"_t":"StartZoneConfig","_id":2,"DBConnection":"","DBName":""}],
-[3, {"_t":"StartZoneConfig","_id":3,"DBConnection":"","DBName":""}],
-[1000, {"_t":"StartZoneConfig","_id":1000,"DBConnection":"mongodb://127.0.0.1","DBName":"ET1000"}],
+[1, {"_t":"StartZoneConfig","_id":1,"DBConnection":"mongodb://127.0.0.1","DBName":"ET1","ServerName":"开天辟地","ZoneType":1}],
+[2, {"_t":"StartZoneConfig","_id":2,"DBConnection":"","DBName":"","ServerName":"机器人区","ZoneType":2}],
+[3, {"_t":"StartZoneConfig","_id":3,"DBConnection":"","DBName":"","ServerName":"路由区","ZoneType":3}],
+[1000, {"_t":"StartZoneConfig","_id":1000,"DBConnection":"mongodb://127.0.0.1","DBName":"ET1000","ServerName":"账号登录服","ZoneType":10}],
 ]}

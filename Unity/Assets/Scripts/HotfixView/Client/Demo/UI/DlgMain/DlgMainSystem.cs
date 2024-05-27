@@ -41,6 +41,12 @@ namespace ET.Client
 				self.Root().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_Forge);
 				await ETTask.CompletedTask;
 			});
+			
+			self.View.E_RoleInfoButtonButton.GetComponent<Button>().AddListenerAsync( async () =>
+			{
+				self.Root().GetComponent<UIComponent>().ShowWindow(WindowID.WindowID_RoleInfo);
+				await ETTask.CompletedTask;
+			});
 		}
 
 		public static void ShowWindow(this DlgMain self, Entity contextData = null)

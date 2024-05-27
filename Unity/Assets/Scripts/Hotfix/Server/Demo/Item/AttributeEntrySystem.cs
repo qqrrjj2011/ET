@@ -1,6 +1,6 @@
 ﻿namespace ET.Server
 {
-    
+    [FriendOf(typeof(AttributeEntry))]
     public class AttributeEntryDestorySystem: DestroySystem<AttributeEntry>
     {
         protected override void Destroy(AttributeEntry self)
@@ -18,7 +18,7 @@
     {
         public static AttributeEntryProto ToMessage(this AttributeEntry self)
         {
-            AttributeEntryProto attributeEntryProto = new AttributeEntryProto();
+            AttributeEntryProto attributeEntryProto = AttributeEntryProto.Create();
             attributeEntryProto.Id    = self.Id;
             attributeEntryProto.Key   = self.Key;
             attributeEntryProto.Value = self.Value;

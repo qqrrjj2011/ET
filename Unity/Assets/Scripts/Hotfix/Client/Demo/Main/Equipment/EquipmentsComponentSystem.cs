@@ -14,9 +14,10 @@
     {
         public static void Clear(this EquipmentsComponent self)
         {
-            ForeachHelper.Foreach(self.EquipItems, (index, item) => 
+            ForeachHelper.Foreach(self.EquipItems, (index, item) =>
             {
-                item?.Dispose();
+                Item ent = item;
+                ent?.Dispose();
             });
             self.EquipItems.Clear();
         }
@@ -35,7 +36,7 @@
         
         public static Item GetItemByPosition(this EquipmentsComponent self, EquipPosition equipPosition)
         {
-            if (self.EquipItems.TryGetValue((int)equipPosition,out Item item))
+            if (self.EquipItems.TryGetValue((int)equipPosition,out EntityRef<Item> item))
             {
                 return item;
             }
@@ -45,7 +46,7 @@
 
         public static void AddEquipItem(this EquipmentsComponent self, Item item)
         {
-            if (self.EquipItems.TryGetValue(item.Config.EquipPosition,out Item equipItem))
+            if (self.EquipItems.TryGetValue(item.Config.EquipPosition,out EntityRef<Item> equipItem))
             {
                 Log.Error($"Already EquipItem in Postion{(EquipPosition) item.Config.EquipPosition}");
                 return;

@@ -25,8 +25,8 @@ namespace ET.Client
             foreach (long playerId in room.PlayerIds)
             {
                 LSUnit lsUnit = lsUnitComponent.GetChild<LSUnit>(playerId);
-                string assetsName = $"Assets/Bundles/Unit/Unit.prefab";
-                GameObject bundleGameObject = await room.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<GameObject>(assetsName);
+                string pathName = PathHelper.PathUnit("Unit"); 
+                GameObject bundleGameObject = await room.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<GameObject>(pathName);
                 GameObject prefab = bundleGameObject.Get<GameObject>("Skeleton");
 
                 GlobalComponent globalComponent = root.GetComponent<GlobalComponent>();

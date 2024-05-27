@@ -152,8 +152,8 @@ namespace ET
             // pb = assetDict[poolName] as GameObject;
             
          //   GameObject pb = ResourcesComponent.Instance.LoadAssetAsync<GameObject>(poolName);
-            
-            GameObject pb = ResourcesComponent.Instance.LoadAssetSync<GameObject>( $"Assets/Bundles/UI/Demo/Item/{poolName}.prefab");
+
+         GameObject pb = ResourcesComponent.Instance.LoadAssetSync<GameObject>(PathHelper.PathItem(poolName));
             return pb;
         }
     }

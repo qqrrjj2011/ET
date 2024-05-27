@@ -9,8 +9,8 @@ namespace ET.Client
         {
             Unit unit = args.Unit;
             // Unit View层
-            string assetsName = $"Assets/Bundles/Unit/Unit.prefab";
-            GameObject bundleGameObject = await scene.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<GameObject>(assetsName);
+            string assetsPath = PathHelper.PathUnit("Unit"); 
+            GameObject bundleGameObject = await scene.GetComponent<ResourcesLoaderComponent>().LoadAssetAsync<GameObject>(assetsPath);
             GameObject prefab = bundleGameObject.Get<GameObject>("Skeleton");
 
             GlobalComponent globalComponent = scene.Root().GetComponent<GlobalComponent>();

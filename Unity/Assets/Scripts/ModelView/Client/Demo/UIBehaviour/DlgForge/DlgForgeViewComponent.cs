@@ -16,7 +16,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_makequeueone.Equals(null) )
+     			ES_MakeQueue ent = this.m_es_makequeueone;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/LayoutGroup/MakeQueueGroup/ES_MakeQueueOne");
 		    	   this.m_es_makequeueone = this.AddChild<ES_MakeQueue,Transform>(subTrans);
@@ -34,7 +35,8 @@ namespace ET.Client
      				Log.Error("uiTransform is null.");
      				return null;
      			}
-     			if( this.m_es_makequeuetwo.Equals(null) )
+     			ES_MakeQueue ent = this.m_es_makequeuetwo;
+     			if( ent == null )
      			{
 		    	   Transform subTrans = UIFindHelper.FindDeepChild<Transform>(this.uiTransform.gameObject,"BackGround/LayoutGroup/MakeQueueGroup/ES_MakeQueueTwo");
 		    	   this.m_es_makequeuetwo = this.AddChild<ES_MakeQueue,Transform>(subTrans);
