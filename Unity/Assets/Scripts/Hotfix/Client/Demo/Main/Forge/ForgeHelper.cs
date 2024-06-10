@@ -28,7 +28,7 @@ namespace ET.Client
             {
                 C2M_StartProduction c2MStartProduction = C2M_StartProduction.Create();
                 c2MStartProduction.ConfigId = productionConfigId;
-                m2CStartProduction = (M2C_StartProduction) await ZoneScene.GetComponent<SessionComponent>().Session.Call(c2MStartProduction);
+                m2CStartProduction = (M2C_StartProduction) await ZoneScene.GetComponent<ClientSenderComponent>().Call(c2MStartProduction);
             }
             catch (Exception e)
             {
@@ -61,7 +61,7 @@ namespace ET.Client
             {
                 C2M_ReceiveProduction c2MReceiveProduction = C2M_ReceiveProduction.Create();
                 c2MReceiveProduction.ProducitonId = productionId;
-                m2CReciveProduction = (M2C_ReceiveProduction) await ZoneScene.GetComponent<SessionComponent>().Session.Call(c2MReceiveProduction);
+                m2CReciveProduction = (M2C_ReceiveProduction) await ZoneScene.GetComponent<ClientSenderComponent>().Call(c2MReceiveProduction);
             }
             catch (Exception e)
             {

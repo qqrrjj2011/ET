@@ -23,7 +23,7 @@ namespace ET.Client
              {
                  C2M_ReceiveTaskReward c2MReceiveTaskReward = C2M_ReceiveTaskReward.Create();
                  c2MReceiveTaskReward.TaskConfigId = taskConfigId;
-                 m2CReciveTaskReward = (M2C_ReceiveTaskReward)await ZoneScene.GetComponent<SessionComponent>().Session.Call(c2MReceiveTaskReward);
+                 m2CReciveTaskReward = (M2C_ReceiveTaskReward)await ZoneScene.GetComponent<ClientSenderComponent>().Call(c2MReceiveTaskReward);
              }
              catch (Exception e)
              {

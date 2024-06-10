@@ -14,10 +14,8 @@ namespace ET.Server
             {
                 response.Error = ErrorCode.ERR_ChatMessageEmpty;
                // reply();
-                
                 return;
             }
-            
             ChatInfoUnitsComponent chatInfoUnitsComponent = chatInfoUnit.Root().GetComponent<ChatInfoUnitsComponent>();
             foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
             {

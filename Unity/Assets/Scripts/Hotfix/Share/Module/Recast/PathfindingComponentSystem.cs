@@ -59,7 +59,7 @@ namespace ET
             self.query.FindNearestPoly(endPos, self.extents, self.filter, out endRef, out endPt, out _);
             
             self.query.FindPath(startRef, endRef, startPt, endPt, self.filter, ref self.polys, new DtFindPathOption(0, float.MaxValue));
-
+ 
             if (0 >= self.polys.Count)
             {
                 return;

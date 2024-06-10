@@ -339,3 +339,35 @@ message Map2Rank_AddOrUpdateRankInfo //IMessage
 }
 
 
+//ResponseType M2G_RequestExitGame
+message G2M_RequestExitGame // ILocationRequest
+{
+	int32 RpcId = 90;
+}
+
+
+message M2G_RequestExitGame // ILocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+//ResponseType L2G_RemoveLoginRecord
+message G2L_RemoveLoginRecord // IRequest
+{
+	int32 RpcId       = 90;
+	string Account  = 1;
+	int ServerId = 2;
+}
+
+message L2G_RemoveLoginRecord // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+

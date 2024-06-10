@@ -3,11 +3,6 @@
 namespace ET.Server
 {
 
-    public interface IUnitCache
-    {
-        
-    }
-    
     [ChildOf]
     public class UnitCache : Entity,IAwake,IDestroy
     {

@@ -65,16 +65,12 @@ namespace ET.Server
             if (isNewUnit)
             {
                 unit =  UnitFactory.Create(gateMapComponent.Scene, player.UnitId, UnitType.Player);
-                Log.Warning(">>>>>>player.UnitId:"+player.UnitId);
-                Log.Warning(">>>>>>player.Zone():"+player.Zone());
-                int realmZone = player.Zone() - 1 + 1000;     // 转换成公共服
+              
+                int realmZone =  1000;     // 公共服获得
                 var roleInfos = await player.Root().GetComponent<DBManagerComponent>().GetZoneDB(realmZone).Query<ServerRoleInfo>(d => d.Id == player.UnitId);
-                UnitRoleInfo unitRoleInfo = new UnitRoleInfo()
-                {
-                    Name = roleInfos[0].Name,
-                    Account = roleInfos[0].Account
-                };
-                unit.AddComponent(unitRoleInfo);
+                UnitRoleInfo unitRoleInfo = unit.GetComponent<UnitRoleInfo>();
+                unitRoleInfo.Name = roleInfos[0].Name;
+                unitRoleInfo.Account = roleInfos[0].Account;
                 
                 UnitCacheHelper.AddOrUpdateUnitAllCache(unit);
             }

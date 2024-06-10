@@ -2,7 +2,7 @@
 
 namespace ET
 {
-   [MemoryPackable]
+  // [MemoryPackable]
     [ChildOf]
     public partial class  RankInfo : Entity,IAwake,IDestroy
     {

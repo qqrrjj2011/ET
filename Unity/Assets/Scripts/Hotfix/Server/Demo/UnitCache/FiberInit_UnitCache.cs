@@ -20,10 +20,10 @@ namespace ET.Server
             StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.Get(root.Fiber.Id);
             root.AddComponent<NetComponent, IPEndPoint, NetworkProtocol>(startSceneConfig.InnerIPPort, NetworkProtocol.UDP);
 
-            long roleId = IdGenerater.Instance.GenerateUnitId(1);
-            Log.Warning(">>>>>>roleId:"+roleId);
-            int zoneId = UnitIdStruct.GetUnitZone(roleId);
-            Log.Warning(">>>>>>zoneId:"+zoneId);
+            // long roleId = IdGenerater.Instance.GenerateUnitId(1);
+            // Log.Warning(">>>>>>roleId:"+roleId);
+            // int zoneId = UnitIdStruct.GetUnitZone(roleId);
+            // Log.Warning(">>>>>>zoneId:"+zoneId);
             
             await ETTask.CompletedTask;
         }

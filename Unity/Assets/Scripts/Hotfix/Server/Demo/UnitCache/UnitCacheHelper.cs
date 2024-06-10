@@ -38,7 +38,7 @@ namespace ET.Server
                 return null;
             }
 
-            int indexOf = queryUnit.ComponentNameList.IndexOf(nameof (Unit));
+            int indexOf = queryUnit.ComponentNameList.IndexOf(typeof(Unit).FullName);
             Unit unit = queryUnit.EntityList[indexOf] as Unit;
             if (unit == null)
             {

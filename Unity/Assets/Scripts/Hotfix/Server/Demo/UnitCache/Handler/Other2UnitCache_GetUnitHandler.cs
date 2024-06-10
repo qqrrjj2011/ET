@@ -17,7 +17,12 @@ namespace ET.Server
             {
                 if (request.ComponentNameList == null || request.ComponentNameList.Count == 0)
                 {
-                    dictionary.Add(nameof (Unit), null);
+                    string fullName = typeof(Unit).FullName;
+                    if (fullName != null)
+                    {
+                        dictionary.Add(fullName, null);
+                    }
+
                     foreach (string s in unitCacheComponent.UnitCacheKeyList)
                     {
                         dictionary.Add(s, null);

@@ -26,7 +26,7 @@ namespace ET.Client
             {
                 C2M_EquipItem c2MEquipItem = C2M_EquipItem.Create();
                 c2MEquipItem.ItemUid = itemId;
-                m2CEquipItem = (M2C_EquipItem) await ZoneScene.GetComponent<SessionComponent>().Session.Call(c2MEquipItem);
+                m2CEquipItem = (M2C_EquipItem) await ZoneScene.GetComponent<ClientSenderComponent>().Call(c2MEquipItem);
             }
             catch (Exception e)
             {
@@ -59,7 +59,7 @@ namespace ET.Client
             {
                 C2M_UnloadEquipItem c2MUnloadEquipItem = C2M_UnloadEquipItem.Create();
                 c2MUnloadEquipItem.EquipPosition = item.Config.EquipPosition;
-                m2CUnloadEquipItem = (M2C_UnloadEquipItem) await ZoneScene.GetComponent<SessionComponent>().Session.Call(c2MUnloadEquipItem);
+                m2CUnloadEquipItem = (M2C_UnloadEquipItem) await ZoneScene.GetComponent<ClientSenderComponent>().Call(c2MUnloadEquipItem);
             }
             catch (Exception e)
             {
@@ -91,7 +91,7 @@ namespace ET.Client
             {
                 C2M_SellItem c2MSellItem = C2M_SellItem.Create();
                 c2MSellItem.ItemUid = itemId;
-                m2cSellItem = (M2C_SellItem) await ZoneScene.GetComponent<SessionComponent>().Session.Call(c2MSellItem);
+                m2cSellItem = (M2C_SellItem) await ZoneScene.GetComponent<ClientSenderComponent>().Call(c2MSellItem);
             }
             catch (Exception e)
             {

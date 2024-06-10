@@ -27,6 +27,7 @@ namespace ET.Client
             root.AddComponent<BagComponent>();
             root.AddComponent<ForgeComponent>();
             root.AddComponent<EquipmentsComponent>();
+            root.AddComponent<RedDotComponent>();
             
             
             

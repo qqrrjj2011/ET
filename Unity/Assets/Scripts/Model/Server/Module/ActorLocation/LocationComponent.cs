@@ -9,7 +9,7 @@ namespace ET.Server
         public const int Player = 1;
         public const int Friend = 2;
         public const int Chat = 3;
-        public const int GateSession = 4;
+        public const int GateSession = 4;     // 转发客服端的时候用到，比如Broadcast
         public const int Max = 10;
     }
     

@@ -11,7 +11,7 @@ namespace ET.Client
             {
                 C2M_StartGameLevel c2MStartGameLevel = C2M_StartGameLevel.Create();
                 c2MStartGameLevel.LevelId = levelId;
-                m2CStartGameLvel  =  (M2C_StartGameLevel) await zoneScene.GetComponent<SessionComponent>().Session.Call(c2MStartGameLevel);
+                m2CStartGameLvel  =  (M2C_StartGameLevel) await zoneScene.GetComponent<ClientSenderComponent>().Call(c2MStartGameLevel);
             }
             catch (Exception e)
             {
@@ -35,7 +35,7 @@ namespace ET.Client
                 C2M_EndGameLevel c2MEndGameLevel = C2M_EndGameLevel.Create();
                 c2MEndGameLevel.BattleResult = (int)battleRoundResult;
                 c2MEndGameLevel.Round = round;
-                m2CEndGameLevel  =  (M2C_EndGameLevel) await zoneScene.GetComponent<SessionComponent>().Session.Call(c2MEndGameLevel);
+                m2CEndGameLevel  =  (M2C_EndGameLevel) await zoneScene.GetComponent<ClientSenderComponent>().Call(c2MEndGameLevel);
             }
             catch (Exception e)
             {

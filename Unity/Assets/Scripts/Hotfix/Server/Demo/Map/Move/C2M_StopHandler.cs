@@ -5,7 +5,7 @@
     {
         protected override async ETTask Run(Unit unit, C2M_Stop message)
         {
-            unit.Stop(1);
+            unit.StopBroadCast(1);
             await ETTask.CompletedTask;
         }
     }

@@ -275,7 +275,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5347\u7EA7"
+  m_Text: "\u5347  \u7EA7"
 --- !u!1 &2576252586109605518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,6 +1765,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5551821155278162839, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u7CBE \u795E:"
+      objectReference: {fileID: 0}
     - target: {fileID: 6055277790713022763, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2321,6 +2326,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5551821155278162839, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u529B \u91CF:"
+      objectReference: {fileID: 0}
     - target: {fileID: 6055277790713022763, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2753,6 +2763,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5551821155278162839, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u4F53 \u529B:"
+      objectReference: {fileID: 0}
     - target: {fileID: 6055277790713022763, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3060,6 +3075,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551821155278162839, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u654F \u6377:"
       objectReference: {fileID: 0}
     - target: {fileID: 6055277790713022763, guid: ae6c89b2a65b3c5418e2a1a32d62d87c,
         type: 3}
