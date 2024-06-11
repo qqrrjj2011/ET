@@ -410,7 +410,7 @@ namespace ET.Client
             {
                 return;
             }
-            foreach (KeyValuePair<int, UIBaseWindow> window in self.AllWindowsDic)
+            foreach (KeyValuePair<int, EntityRef<UIBaseWindow>> window in self.AllWindowsDic)
             {
                 UIBaseWindow baseWindow = window.Value;
                 if (baseWindow == null|| baseWindow.IsDisposed)
@@ -436,18 +436,19 @@ namespace ET.Client
         {
             self.IsPopStackWndStatus = false;
             self.UIBaseWindowlistCached.Clear();
-            foreach (KeyValuePair<int, UIBaseWindow> window in self.VisibleWindowsDic)
+            foreach (KeyValuePair<int, EntityRef<UIBaseWindow>> window in self.VisibleWindowsDic)
             {
-                if (window.Value.windowType == UIWindowType.Fixed && !includeFixed)
+                UIBaseWindow windowValue = window.Value;
+                if (windowValue.windowType == UIWindowType.Fixed && !includeFixed)
                     continue;
-                if (window.Value.IsDisposed)
+                if (windowValue.IsDisposed)
                 {
                     continue;
                 }
                 
                 self.UIBaseWindowlistCached.Add((WindowID)window.Key);
-                window.Value.UIPrefabGameObject?.SetActive(false);
-                UIEventComponent.Instance.GetUIEventHandler(window.Value.WindowID).OnHideWindow(window.Value);
+                windowValue.UIPrefabGameObject?.SetActive(false);
+                UIEventComponent.Instance.GetUIEventHandler(windowValue.WindowID).OnHideWindow(window.Value);
             }
             if (self.UIBaseWindowlistCached.Count > 0)
             {

@@ -32,6 +32,34 @@
 
     <ItemGroup>
 
+        <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Mathf.cs">
+          <Link>ETUnityEngine\Mathf.cs</Link>
+        </Compile>
+
+        <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Matrix3x3.cs">
+          <Link>ETUnityEngine\Matrix3x3.cs</Link>
+        </Compile>
+
+        <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Matrix4x4.cs">
+          <Link>ETUnityEngine\Matrix4x4.cs</Link>
+        </Compile>
+
+        <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Quaternion.cs">
+          <Link>ETUnityEngine\Quaternion.cs</Link>
+        </Compile>
+
+        <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Vector2.cs">
+          <Link>ETUnityEngine\Vector2.cs</Link>
+        </Compile>
+
+        <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Vector3.cs">
+          <Link>ETUnityEngine\Vector3.cs</Link>
+        </Compile>
+
+        <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Vector4.cs">
+          <Link>ETUnityEngine\Vector4.cs</Link>
+        </Compile>
+
         <Compile Include="..\..\Unity\Assets\Scripts\ThirdParty\TrueSync\**\*.cs">
             <Link>TrueSync/%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
@@ -67,5 +95,29 @@
         <PackageReference Include="SharpZipLib" Version="1.3.3" />
         <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Mathf.cs.meta">
+        <Link>ETUnityEngine\Mathf.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Matrix3x3.cs.meta">
+        <Link>ETUnityEngine\Matrix3x3.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Matrix4x4.cs.meta">
+        <Link>ETUnityEngine\Matrix4x4.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Quaternion.cs.meta">
+        <Link>ETUnityEngine\Quaternion.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Vector2.cs.meta">
+        <Link>ETUnityEngine\Vector2.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Vector3.cs.meta">
+        <Link>ETUnityEngine\Vector3.cs.meta</Link>
+      </Content>
+      <Content Include="..\..\Unity\Assets\Scripts\ThirdParty\ETUnityEngine\Vector4.cs.meta">
+        <Link>ETUnityEngine\Vector4.cs.meta</Link>
+      </Content>
     </ItemGroup>
 </Project>

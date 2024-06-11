@@ -8,9 +8,9 @@ namespace ET
 
 
 
-        public override void AfterEndInit()
+        public  void AfterEndInit()
         {
-            base.AfterEndInit();
+          //  base.AfterEndInit();
             
             foreach (var config in this.dict.Values)
             {

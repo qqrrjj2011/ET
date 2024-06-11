@@ -6,18 +6,18 @@ namespace ET
     {
         public Dictionary<int, List<int>> BeforeTaskConfigDictionary = new Dictionary<int, List<int>>();
 
-        public override void AfterEndInit()
+        public  void AfterEndInit()
         {
-            base.AfterEndInit();
+           // base.AfterEndInit();
 
-            foreach (var config in this.list)
-            {
-                if (!this.BeforeTaskConfigDictionary.ContainsKey(config.TaskBeforeId))
-                {
-                    this.BeforeTaskConfigDictionary.Add(config.TaskBeforeId,new List<int>());
-                }
-                this.BeforeTaskConfigDictionary[config.TaskBeforeId].Add(config.Id);
-            }
+            // foreach (var config in this.list)
+            // {
+            //     if (!this.BeforeTaskConfigDictionary.ContainsKey(config.TaskBeforeId))
+            //     {
+            //         this.BeforeTaskConfigDictionary.Add(config.TaskBeforeId,new List<int>());
+            //     }
+            //     this.BeforeTaskConfigDictionary[config.TaskBeforeId].Add(config.Id);
+            // }
             
         }
 

@@ -1,5 +1,4 @@
-﻿using ET.Server;
-
+﻿
 namespace ET.Client
 {
     [MessageHandler(SceneType.Demo)]
